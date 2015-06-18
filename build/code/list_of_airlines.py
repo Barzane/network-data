@@ -21,10 +21,13 @@ def list_of_airlines(data):
     all_airlines = []
 
     for keys in data.keys():
+        
         keys_list = keys.split("_")
         airline = keys_list[2]
-        if airline not in all_airlines :
+        
+        if airline not in all_airlines:
             all_airlines.append(airline)
        
     all_airlines.sort()
+    
     return(all_airlines)

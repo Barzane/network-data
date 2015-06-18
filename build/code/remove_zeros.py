@@ -46,7 +46,8 @@ def remove_zeros(Nodes_dict,g) :
     airports_list.sort()
 
     for i in range(n):
-        if numpy.array_equal(g[i], numpy.zeros(n)) :
+        
+        if numpy.array_equal(g[i], numpy.zeros(n)):
             unused_airports.append(i)
         else:
             new_airports_list.append(airports_list[i])

@@ -40,11 +40,14 @@ FOR	each item in the list of data_2013_4.bin keys
     column = int 
 
     for keys in data.keys():
+        
         keys_list = keys.split("_")
         origin = keys_list[0]
         destination = keys_list[1]
         airline = keys_list[2]
-        if airline == carrier :
+        
+        if airline == carrier:
+            
             row = Nodes_dict[origin]
             column = Nodes_dict[destination]
             g[row][column] = 1

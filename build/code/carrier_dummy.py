@@ -14,15 +14,20 @@ def add_dummies(year, quarter):
     carrierList = []
     
     for key in data:
+        
         carrier = key.split('_')[2]
+        
         if carrier not in carrierList:
             carrierList.append(carrier)
     
     carrierList.sort()
     
     for key in data:
+        
         carrier = key.split('_')[2]
+        
         for item in carrierList:
+            
             if carrier == item:
                 data[key][item] = 1
             else:

@@ -14,6 +14,7 @@ def filter_low_routes_by_carrier(year, quarter, threshold):
     routesByCarrier = {}
     
     for key in data:
+        
         carrier = key.split('_')[2]
         
         if carrier not in routesByCarrier:
@@ -31,6 +32,7 @@ def filter_low_routes_by_carrier(year, quarter, threshold):
     data2 = {}
     
     for key in data:
+        
         carrier = key.split('_')[2]
         
         if carrier not in routesByCarrierFilter:

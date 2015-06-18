@@ -51,6 +51,7 @@ def add_dummies(year, quarter):
     competitive_route = {}
     
     for route in route_carrier_mktshr:
+        
         x = route_carrier_mktshr[route]
         
         #   http://stackoverflow.com/questions/613183/sort-a-python-dictionary-by-value

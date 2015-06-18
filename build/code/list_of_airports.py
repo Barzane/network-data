@@ -23,11 +23,14 @@ def list_of_airports(data):
     all_airports = []
 
     for keys in data.keys():
+        
         keys_list = keys.split("_")
         origin = keys_list[0]
         destination = keys_list[1]
+
         if origin not in all_airports :
             all_airports.append(origin)
+
         if destination not in all_airports : 
             all_airports.append(destination)
 

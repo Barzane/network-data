@@ -20,21 +20,20 @@ eigenvector_map = dictionary, with key = node number, value = eigenvector centra
 		return eigenvector_map"""
     
     n = len(g)
-#    g = g + numpy.eye(n)
     w, U = linalg.eig(g)
-#    print w
     numpy.testing.assert_almost_equal(w * U, g.dot(U))
     max_eigenvalue_index = int(numpy.argmax(w))
-#    print max_eigenvalue_index
-#    eigenvector_c = (g.dot(U)).T[max_eigenvalue_index]
     eigenvector_c = (U.T)[max_eigenvalue_index]
+    
     if (eigenvector_c <= 0).all():
-        eigenvector_c = -eigenvector_c
+        eigenvector_c = (-eigenvector_c)
+        
     eigenvector_c = numpy.real(eigenvector_c)
     eigenvector_map = dict(zip(range(n), eigenvector_c))
+    
     sumsquare = 0
+    
     for element in eigenvector_c:
         sumsquare = sumsquare + element**2
-#    print 'sumsquare =',sumsquare
     
     return eigenvector_map

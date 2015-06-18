@@ -15,6 +15,7 @@ def add_variables(year, quarter):
     airport = {}
     
     for key in data:
+        
         data_s = key.split('_')
         origin = data_s[0]
         dest = data_s[1]

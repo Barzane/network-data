@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-#from distance_matrix import distance_matrix
-#D=distance_matrix(g)[0]
-
 from shortest_paths import shortest_paths
 
 def centrality_betweenness(i,D):
@@ -24,12 +21,18 @@ def centrality_betweenness(i,D):
     n = len(D)
     
     for k in range(n-1):
+        
         for j in range(k+1,n):
+            
             if i!=j and i!=k:
+                
                 if (k,j) not in SP.keys():
-                    SP[(k, j)] = shortest_paths(k, j, D)  
+                    SP[(k, j)] = shortest_paths(k, j, D)
+                    
                 paths = SP[(k, j)]
+                
                 if paths != [[]] :
+                    
                    P_kj = len(paths)
                    Pi_kj = [i in item for item in paths].count(True)
                    ratio = float(Pi_kj) / P_kj
@@ -44,7 +47,8 @@ def all_centrality_betweenness(D):
 			centrality_dictionary[i] = CENTRALITY-BETWEENNESS(i, D)
 		return centrality_dictionary"""
   
-    global SP
+    global SP # beware use of global variables
+    
     SP = {}
     centrality_dictionary = {}
     

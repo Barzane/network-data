@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 
-#from distance_matrix import distance_matrix
-#D=distance_matrix(g)[0]
-
 def add_node(i,j,D,inlist):
     """ADD-NODE(i, j, D, inlist)
 		// extend a partial (m < l(i, j) segment) geodesic, starting at i, with all valid m + 1 segments
@@ -17,12 +14,16 @@ def add_node(i,j,D,inlist):
 				append [append k to inlist_mutable] to outlist // separate the append steps
 		return outlist"""
 
-    if D[inlist[-1]][j] == 1 :
+    if D[inlist[-1]][j] == 1:
         inlist.append(j)
         return [inlist]
+        
     outlist = []    
-    for k in range(len(D)) :
+
+    for k in range(len(D)):
+
         inlist_mutable = inlist[:]        
+
         if (k not in inlist) and (k!=j) and  (D[inlist[-1]][k] == 1) and (D[k][j] == D[i][j] - D[i][k]) and (D[k][j] == D[i][j]-len(inlist)) :
             inlist_mutable.append(k)
             outlist.append(inlist_mutable)
@@ -72,36 +73,45 @@ def shortest_paths(i,j,D):
 				stop
 		return paths"""
 
-    if D[i][j] == 1 :
+    if D[i][j] == 1:
         return [[i, j]]
-    if D[i][j] == float("inf") :
+        
+    if D[i][j] == float("inf"):
         return [[]]
-    if D[i][j] == 0 :
+        
+    if D[i][j] == 0:
         return 'Start and end nodes are identical'
+        
     paths = []
-    for k in range(len(D)) :
+    
+    for k in range(len(D)):
+        
         if (k != j) and (k != i) and (D[i][k] == 1) and (D[k][j] == D[i][j] - 1):
             paths.append([i, k])
     
     flag = True
-    while flag == True :
+    
+    while flag == True:
+        
         newpaths = []
-        for item in paths :
+        
+        for item in paths:
             newitems = add_node(i,j,D,item)
 
-            for element in newitems :
+            for element in newitems:
                 newpaths.append(element)
 
         paths = newpaths[:]
-        flag = False 
-        for path in paths :
-#            if path[-1]==j:
-#                flag=False
-            if path[-1] != j :
+        flag = False
+        
+        for path in paths:
+
+            if path[-1] != j:
                 flag = True
                 
-    for path in paths :
-        if len(path) != D[i][j] + 1 :
+    for path in paths:
+        
+        if len(path) != D[i][j] + 1:
             return 'Geodesic incorrect length'
             
     return paths

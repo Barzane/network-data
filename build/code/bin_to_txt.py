@@ -30,6 +30,7 @@ def convert_to_txt(year, quarter):
         for i in varList:
             headerLine += str(i)
             headerLine += '\t'
+            
         headerLine = headerLine.rstrip()
         headerLine += '\n'
         
@@ -38,6 +39,7 @@ def convert_to_txt(year, quarter):
         nb = 0
         
         for key in dataDict.keys():
+            
             nb += 1
             
             dataLine = key.split('_')

@@ -14,8 +14,6 @@ SET	dictionary CC, with key = node number, value = closeness centrality <dict(zi
 		OUTPUT	CC
 	ENDFUNCTION"""
 
-#    g = network[1]
-
     n = len(g)
     D = distance_matrix(g)[0]
     all_cc_i = float(n - 1) / numpy.sum(D, axis=1)

@@ -48,8 +48,6 @@ SET	condition = no zero elements in the upper-triangle of matrixsum (not includi
 		OUTPUT	average_path_length
 	ENDFUNCTION"""
  
-#    g = network[1]
- 
     n = len(g) 
     G1 = numpy.zeros((n, n), dtype=numpy.int)
     G2 = g
@@ -58,30 +56,38 @@ SET	condition = no zero elements in the upper-triangle of matrixsum (not includi
     j = 1 
     J = numpy.ones((n, n))
     
-    if n == 1 :
+    if n == 1:
+        
         D = 0
+        
         return D
     
-    while flag and j<=n-1 :
+    while flag and j <= (n-1):
+        
         B = (G2 != 0) * (G1 == 0)
         D += B * (j * J)
         matrixsum = G1 + G2
-        if (matrixsum[numpy.triu_indices(n,1)]==0).any()==False :
+        
+        if (matrixsum[numpy.triu_indices(n,1)]==0).any()==False:
             flag = False
         else : 
             G1 += D
             G1 = G1 + G2 
             G2 = G2.dot(g)
+            
         j += 1 
     
     D = D.astype(float)
-    if (D[numpy.triu_indices(n,1)]==0).any() :
+    
+    if (D[numpy.triu_indices(n,1)]==0).any():
+        
         C = (D == 0)*float("inf")
         C = numpy.nan_to_num(C)
         D += C
+        
     numpy.fill_diagonal(D, 0)
     
     average_path_length = numpy.sum(D) / (n * (n-1))
     
-    return D,average_path_length
+    return D, average_path_length
     
