@@ -62,7 +62,7 @@ def add_network(year, quarter):
         CC = closeness_centrality(gbar)
         eigenvector_map = centrality_eigenvector(gbar)
         
-        if len(Nbar)>2 and not numpy.isinf(average_path_length):
+        if len(Nbar) > 2 and not numpy.isinf(average_path_length):
             BC = all_centrality_betweenness(D)
     
         for key in DC:
@@ -71,7 +71,7 @@ def add_network(year, quarter):
         for key in CC:
             CC_dict[carrier][inv_d[key]] = CC[key]
         
-        if len(Nbar)>2 and not numpy.isinf(average_path_length):
+        if len(Nbar) > 2 and not numpy.isinf(average_path_length):
             for key in BC:
                 BC_dict[carrier][inv_d[key]] = BC[key]
         
