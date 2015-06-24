@@ -14,6 +14,7 @@ from closeness_centrality import closeness_centrality
 from centrality_betweenness import all_centrality_betweenness
 from centrality_eigenvector import centrality_eigenvector
 from density_degree_distribution import density_degree_distribution
+from route_level_g import route_level_g
 
 def add_network(year, quarter):
 
@@ -49,6 +50,9 @@ def add_network(year, quarter):
         network = (N,g)
         network_bar = (Nbar,gbar)
         inv_d = invert_dict(Nbar)
+        
+        network_star = route_level_g(network_bar)        
+                
         D, average_path_length = distance_matrix(gbar)
         density, Pd = density_degree_distribution(network_bar)
         
