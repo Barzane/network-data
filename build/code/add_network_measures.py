@@ -26,13 +26,19 @@ def add_network(year, quarter):
     
     all_airlines = list_of_airlines(data)
     all_airports = list_of_airports(data)
-    N = map_airports_code(all_airports)
+    N = map_airports_code(all_airports)  
     
     DC_dict = {}
     CC_dict = {}
     BC_dict = {}
     EC_dict = {}
+    
     density_dict = {}
+    
+    DCroute_dict = {}
+    CCroute_dict = {}
+    BCroute_dict = {}
+    ECroute_dict = {}
     
     count = 0
     
@@ -43,23 +49,37 @@ def add_network(year, quarter):
         DC_dict[carrier] = {}
         CC_dict[carrier] = {}
         BC_dict[carrier] = {}
-        EC_dict[carrier] = {}    
+        EC_dict[carrier] = {}
+        
+        DCroute_dict[carrier] = {}
+        CCroute_dict[carrier] = {}
+        BCroute_dict[carrier] = {}
+        ECroute_dict[carrier] = {}
         
         g = adjacency_matrix(data, N, carrier)
         Nbar, gbar = remove_zeros(N, g)
-        network = (N,g)
+        network = (N, g)
         network_bar = (Nbar,gbar)
         inv_d = invert_dict(Nbar)
         
         network_star = route_level_g(network_bar)        
-                
+        Nstar = network_star[0]
+        gstar = network_star[1]
+        inv_d_star = invert_dict(Nstar)
+            
         D, average_path_length = distance_matrix(gbar)
         density, Pd = density_degree_distribution(network_bar)
         
         density_dict[carrier] = density
             
         DC = degree_centrality(network_bar)
+        DCroute = degree_centrality(network_star)
+        
         CC = closeness_centrality(gbar)
+        
+        if len(Nstar) > 1:
+            CCroute = closeness_centrality(gstar)
+        
         eigenvector_map = centrality_eigenvector(gbar)
         
         if len(Nbar) > 2 and not numpy.isinf(average_path_length):
@@ -67,9 +87,16 @@ def add_network(year, quarter):
     
         for key in DC:
             DC_dict[carrier][inv_d[key]] = DC[key]
+        
+        for key in DCroute:
+            DCroute_dict[carrier][inv_d_star[key]] = DCroute[key]
             
         for key in CC:
             CC_dict[carrier][inv_d[key]] = CC[key]
+        
+        if len(Nstar) > 1:
+            for key in CCroute:
+                CCroute_dict[carrier][inv_d_star[key]] = CCroute[key]
         
         if len(Nbar) > 2 and not numpy.isinf(average_path_length):
             for key in BC:
@@ -79,10 +106,11 @@ def add_network(year, quarter):
             EC_dict[carrier][inv_d[key]] = eigenvector_map[key]
         
         count += 1
-        
+    
     for i in data:
         origin = i.split('_')[0]
         dest = i.split('_')[1]
+        route = origin + '_' + dest
         carrier = i.split('_')[2]
         
         # add minimum, maximum degree centrality variable    
@@ -90,12 +118,26 @@ def add_network(year, quarter):
         data[i]['mindegree'] = min(DC_dict[carrier][origin], DC_dict[carrier][dest])
         data[i]['maxdegree'] = max(DC_dict[carrier][origin], DC_dict[carrier][dest])
     
+        # add route-level degree centrality variable    
+        
+        data[i]['routedegree'] = DCroute_dict[carrier][route]
+    
         # add minimum, maximum closeness centrality variable    
         
         data[i]['mincloseness'] = min(CC_dict[carrier][origin], CC_dict[carrier][dest])
         data[i]['maxcloseness'] = max(CC_dict[carrier][origin], CC_dict[carrier][dest])
-    
-         # add minimum, maximum betweenness centrality variable    
+
+        # add route-level closeness centrality variable    
+        
+        try:
+            
+            data[i]['routecloseness'] = CCroute_dict[carrier][route]
+            
+        except KeyError:
+            
+            data[i]['routecloseness'] = 'NA'
+        
+        # add minimum, maximum betweenness centrality variable    
         
         try:
             
@@ -121,7 +163,7 @@ def add_network(year, quarter):
     filename = '..\\temp\\data_' + str(year) + '_' + str(quarter) + '.bin'
     
     f = open(filename, 'wb')
-    cPickle.dump(data,f)
+    cPickle.dump(data, f)
     f.close()
     
     return None
