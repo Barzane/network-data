@@ -81,6 +81,7 @@ def add_network(year, quarter):
             CCroute = closeness_centrality(gstar)
         
         eigenvector_map = centrality_eigenvector(gbar)
+        eigenvector_map_route = centrality_eigenvector(gstar)
         
         if len(Nbar) > 2 and not numpy.isinf(average_path_length):
             BC = all_centrality_betweenness(D)
@@ -104,6 +105,9 @@ def add_network(year, quarter):
         
         for key in eigenvector_map:
             EC_dict[carrier][inv_d[key]] = eigenvector_map[key]
+            
+        for key in eigenvector_map_route:
+            ECroute_dict[carrier][inv_d_star[key]] = eigenvector_map_route[key]
         
         count += 1
     
@@ -153,6 +157,10 @@ def add_network(year, quarter):
         
         data[i]['mineigenvector'] = min(EC_dict[carrier][origin], EC_dict[carrier][dest])
         data[i]['maxeigenvector'] = max(EC_dict[carrier][origin], EC_dict[carrier][dest])
+    
+        # add route-level eigenvector centrality variable    
+        
+        data[i]['routeeigenvector'] = ECroute_dict[carrier][route]
     
         # add density
     
