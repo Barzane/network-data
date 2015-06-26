@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-def add_node(i,j,D,inlist):
+def add_node(i, j, D, inlist):
     """ADD-NODE(i, j, D, inlist)
 		// extend a partial (m < l(i, j) segment) geodesic, starting at i, with all valid m + 1 segments
 // update partial geodesic and terminate if last node is only one step away from j
@@ -24,13 +24,13 @@ def add_node(i,j,D,inlist):
 
         inlist_mutable = inlist[:]        
 
-        if (k not in inlist) and (k!=j) and  (D[inlist[-1]][k] == 1) and (D[k][j] == D[i][j] - D[i][k]) and (D[k][j] == D[i][j]-len(inlist)) :
+        if (k not in inlist) and (k != j) and  (D[inlist[-1]][k] == 1) and (D[k][j] == D[i][j] - D[i][k]) and (D[k][j] == D[i][j] - len(inlist)) :
             inlist_mutable.append(k)
             outlist.append(inlist_mutable)
             
     return outlist
     
-def shortest_paths(i,j,D):
+def shortest_paths(i, j, D):
     """SHORTEST-PATHS(i, j, D)
 		// find all shortest paths from node i to node j in a network (N, g)
 		// D = (l(i, j)) is the distance matrix corresponding to g (from Task 15)
@@ -96,7 +96,8 @@ def shortest_paths(i,j,D):
         newpaths = []
         
         for item in paths:
-            newitems = add_node(i,j,D,item)
+            
+            newitems = add_node(i, j, D, item)
 
             for element in newitems:
                 newpaths.append(element)

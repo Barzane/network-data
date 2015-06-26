@@ -2,7 +2,7 @@
 
 from shortest_paths import shortest_paths
 
-def centrality_betweenness(i,D):
+def centrality_betweenness(i, D):
     """CENTRALITY-BETWEENNESS(i, D)
 		ratio_sum = 0 // a float, will contain the partial sum of P_i(k,j) / P(k, j)
 		for k = 0 to (D.size - 2) // D.size is the number of nodes in N; count starts at 0
@@ -17,16 +17,16 @@ def centrality_betweenness(i,D):
 						ratio_sum = ratio_sum + ratio // increment partial sum
 		return ratio_sum / ((D.size - 1) x (D.size - 2) / 2)"""
   
-    ratio_sum=0
+    ratio_sum = 0
     n = len(D)
     
-    for k in range(n-1):
+    for k in range(n - 1):
         
-        for j in range(k+1,n):
+        for j in range(k + 1, n):
             
-            if i!=j and i!=k:
+            if i != j and i != k:
                 
-                if (k,j) not in SP.keys():
+                if (k, j) not in SP.keys():
                     SP[(k, j)] = shortest_paths(k, j, D)
                     
                 paths = SP[(k, j)]
@@ -56,6 +56,3 @@ def all_centrality_betweenness(D):
         centrality_dictionary[i] = centrality_betweenness(i, D)
         
     return centrality_dictionary
-    
-    
-    

@@ -15,6 +15,7 @@ from centrality_betweenness import all_centrality_betweenness
 from centrality_eigenvector import centrality_eigenvector
 from density_degree_distribution import density_degree_distribution
 from route_level_g import route_level_g
+#from connected import connected
 
 def add_network(year, quarter):
 
@@ -59,16 +60,35 @@ def add_network(year, quarter):
         g = adjacency_matrix(data, N, carrier)
         Nbar, gbar = remove_zeros(N, g)
         network = (N, g)
-        network_bar = (Nbar,gbar)
+        network_bar = (Nbar, gbar)
         inv_d = invert_dict(Nbar)
         
         network_star = route_level_g(network_bar)        
         Nstar = network_star[0]
         gstar = network_star[1]
         inv_d_star = invert_dict(Nstar)
-            
+        
+#        diameter_g = connected(gbar)
+#        diameter_gstar = connected(gstar)
+#        
+#        print 'diameter g = ', diameter_g
+#        print 'diameter gstar = ', diameter_gstar
+        
         D, average_path_length = distance_matrix(gbar)
+        
+        if len(Nstar) > 1:
+            Dstar, average_path_length_star = distance_matrix(gstar)
+            
         density, Pd = density_degree_distribution(network_bar)
+        
+#        try:
+#            
+#            density_star, Pd_star = density_degree_distribution(network_star)
+#            print density, density_star
+#            
+#        except ZeroDivisionError:
+#            
+#            pass
         
         density_dict[carrier] = density
             
@@ -85,6 +105,9 @@ def add_network(year, quarter):
         
         if len(Nbar) > 2 and not numpy.isinf(average_path_length):
             BC = all_centrality_betweenness(D)
+            
+#        if len(Nstar) > 1 and not numpy.isinf(average_path_length_star):
+#            BCroute = all_centrality_betweenness(Dstar)
     
         for key in DC:
             DC_dict[carrier][inv_d[key]] = DC[key]

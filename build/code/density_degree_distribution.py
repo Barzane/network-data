@@ -37,7 +37,7 @@ def density_degree_distribution(network):
     n = len(g)
     
     if n == 1:
-        raise Exception('n>1 required')
+        raise ZeroDivisionError('n > 1 required')
         
     all_degrees = numpy.sum(g ,axis=1)
     density = float(numpy.sum(g)) / (n * (n-1))
