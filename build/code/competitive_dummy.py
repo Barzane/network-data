@@ -7,6 +7,8 @@ def add_dummies(year, quarter):
     src = '..\\temp\\data_' + str(year) + '_' + str(quarter) + '.bin'
     dst = '..\\temp\\data_' + str(year) + '_' + str(quarter) + '.bin'
     
+    dst_route_carrier_mktshr = '..\\temp\\route_carrier_mktshr_' + str(year) + '_' + str(quarter) + '.bin'
+    
     f = open(src, 'rb')
     data = cPickle.load(f)
     f.close()
@@ -46,9 +48,18 @@ def add_dummies(year, quarter):
             print 'error', route, carrier, chk_sum
             sss
     
+#    save route_carrier_mktshr to /build/temp
+#    to be used in Evans & Kessides (1993) IV construction
+    
+    print 'saving ' + dst_route_carrier_mktshr    
+    
+    f = open(dst_route_carrier_mktshr, 'wb')
+    cPickle.dump(route_carrier_mktshr, f)
+    f.close()
+    
     monopoly_route = {}
     duopoly_route = {}
-    competitive_route = {}
+    competitive_route = {}    
     
     for route in route_carrier_mktshr:
         
