@@ -2,6 +2,8 @@
 
 import cPickle, numpy, copy, operator
 
+import evans_kessides_iv
+
 def add_dummies(year, quarter):
 
     src = '..\\temp\\data_' + str(year) + '_' + str(quarter) + '.bin'
@@ -131,13 +133,16 @@ def add_dummies(year, quarter):
     nb_duopoly_routes = duopoly_route.values().count(1.0)
     nb_competitive_routes = competitive_route.values().count(1.0)
     
-    print '\t'+'number of routes', nb_routes
-    print '\t'+'number of monopoly routes', nb_monopoly_routes, str(100*float(nb_monopoly_routes)/nb_routes)+'%'
-    print '\t'+'number of duopoly routes', nb_duopoly_routes, str(100*float(nb_duopoly_routes)/nb_routes)+'%'
-    print '\t'+'number of competitive routes', nb_competitive_routes, str(100*float(nb_competitive_routes)/nb_routes)+'%'
+    print '\t' + 'number of routes', nb_routes
+    print '\t' + 'number of monopoly routes', nb_monopoly_routes, str(100*float(nb_monopoly_routes)/nb_routes)+'%'
+    print '\t' + 'number of duopoly routes', nb_duopoly_routes, str(100*float(nb_duopoly_routes)/nb_routes)+'%'
+    print '\t' + 'number of competitive routes', nb_competitive_routes, str(100*float(nb_competitive_routes)/nb_routes)+'%'
     
     f = open(dst, 'wb')
     cPickle.dump(data, f)
     f.close()
+    
+    print '[competitive_dummy.py] add Evans & Kessides (1993) IV to data_year_quarter.bin, save to \\temp'
+    evans_kessides_iv.add_iv(year, quarter)
     
     return None

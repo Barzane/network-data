@@ -43,6 +43,7 @@ for (year, quarter) in [(2013, 4), (2003, 4)]:
     carrier_dummy.add_dummies(year, quarter)
     
     print 'add Dai et al (2014) monopoly, duopoly, competitive dummies, save to \\temp'
+    print '...Evans & Kessides (1993) IV function called by competitive_dummy.py'
     
     competitive_dummy.add_dummies(year, quarter)
     
