@@ -17,6 +17,8 @@ from density_degree_distribution import density_degree_distribution
 from route_level_g import route_level_g
 #from connected import connected
 
+import other_carrier_centrality
+
 def add_network(year, quarter):
 
     src = '..\\input\\data_' + str(year) + '_' + str(quarter) + '.bin'
@@ -133,6 +135,11 @@ def add_network(year, quarter):
             ECroute_dict[carrier][inv_d_star[key]] = eigenvector_map_route[key]
         
         count += 1
+    
+    centrality_dicts = ({'betweenness': BC_dict, 'closeness': 
+        CC_dict, 'degree': DC_dict, 'eigenvector': EC_dict})
+    
+    other_centrality = other_carrier_centrality.centrality(centrality_dicts)
     
     for i in data:
         origin = i.split('_')[0]
