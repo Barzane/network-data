@@ -2,7 +2,7 @@
 
 import numpy
 
-def adjacency_matrix(data,Nodes_dict,carrier):
+def adjacency_matrix(data, Nodes_dict, carrier):
     """FUNCTION	create an adjacency matrix for nodes in N
 		INPUT	data dictionary data_2013_4.bin
 		INPUT	dictionary of nodes (output from Task 5)
