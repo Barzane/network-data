@@ -16,7 +16,7 @@ for folder in ['..\\output\\*', '..\\temp\\*', '..\\input\\*']:
     for filename in folder_contents:
         os.remove(filename)
 
-for (year, quarter) in [(2013, 4), (2003, 4)]:
+for (year, quarter) in [(2013, 4)]:
 
     print
     print str(year) + 'Q' + str(quarter)
@@ -38,9 +38,9 @@ for (year, quarter) in [(2013, 4), (2003, 4)]:
     
     filter_data.filter_low_routes_by_carrier(year, quarter, low_route_threshold)
     
-    print 'add carrier dummies, save to \\temp'
-    
-    carrier_dummy.add_dummies(year, quarter)
+#    print 'add carrier dummies, save to \\temp'
+#    
+#    carrier_dummy.add_dummies(year, quarter)
     
     print 'add Dai et al (2014) monopoly, duopoly, competitive dummies, save to \\temp'
     print '...Evans & Kessides (1993) IV function called by competitive_dummy.py'

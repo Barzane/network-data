@@ -15,7 +15,7 @@ from centrality_betweenness import all_centrality_betweenness
 from centrality_eigenvector import centrality_eigenvector
 from density_degree_distribution import density_degree_distribution
 from route_level_g import route_level_g
-#from connected import connected
+from connected import connected
 
 import other_carrier_centrality
 
@@ -37,6 +37,7 @@ def add_network(year, quarter):
     EC_dict = {}
     
     density_dict = {}
+    diameter_dict = {}
     
     DCroute_dict = {}
     CCroute_dict = {}
@@ -70,7 +71,14 @@ def add_network(year, quarter):
         gstar = network_star[1]
         inv_d_star = invert_dict(Nstar)
         
-#        diameter_g = connected(gbar)
+        try:
+            
+            diameter_g = connected(gbar)
+            
+        except:
+            
+            diameter_g = 'NA'
+            
 #        diameter_gstar = connected(gstar)
 #        
 #        print 'diameter g = ', diameter_g
@@ -91,7 +99,9 @@ def add_network(year, quarter):
 #        except ZeroDivisionError:
 #            
 #            pass
-        
+
+        diameter_dict[carrier] = diameter_g
+            
         density_dict[carrier] = density
             
         DC = degree_centrality(network_bar)
@@ -152,6 +162,11 @@ def add_network(year, quarter):
         data[i]['mindegree'] = min(DC_dict[carrier][origin], DC_dict[carrier][dest])
         data[i]['maxdegree'] = max(DC_dict[carrier][origin], DC_dict[carrier][dest])
     
+        # add origin, destination degree centrality variable
+    
+        data[i]['origindegree'] = DC_dict[carrier][origin]
+        data[i]['destinationdegree'] = DC_dict[carrier][dest]
+        
         # add route-level degree centrality variable    
         
         data[i]['routedegree'] = DCroute_dict[carrier][route]
@@ -160,6 +175,11 @@ def add_network(year, quarter):
         
         data[i]['mincloseness'] = min(CC_dict[carrier][origin], CC_dict[carrier][dest])
         data[i]['maxcloseness'] = max(CC_dict[carrier][origin], CC_dict[carrier][dest])
+
+        # add origin, destination closeness centrality variable
+    
+        data[i]['origincloseness'] = CC_dict[carrier][origin]
+        data[i]['destinationcloseness'] = CC_dict[carrier][dest]
 
         # add route-level closeness centrality variable    
         
@@ -183,11 +203,28 @@ def add_network(year, quarter):
             data[i]['minbetweenness'] = 'NA'
             data[i]['maxbetweenness'] = 'NA'
     
+        # add origin, destination betweenness centrality variable    
+        
+        try:
+            
+            data[i]['originbetweenness'] = BC_dict[carrier][origin]
+            data[i]['destinationbetweenness'] = BC_dict[carrier][dest]
+            
+        except KeyError:
+            
+            data[i]['originbetweenness'] = 'NA'
+            data[i]['destinationbetweenness'] = 'NA'
+            
         # add minimum, maximum eigenvector centrality variable    
         
         data[i]['mineigenvector'] = min(EC_dict[carrier][origin], EC_dict[carrier][dest])
         data[i]['maxeigenvector'] = max(EC_dict[carrier][origin], EC_dict[carrier][dest])
     
+        # add origin, destination eigenvector centrality variable    
+        
+        data[i]['origineigenvector'] = EC_dict[carrier][origin]
+        data[i]['destinationeigenvector'] = EC_dict[carrier][dest]
+        
         # add route-level eigenvector centrality variable    
         
         data[i]['routeeigenvector'] = ECroute_dict[carrier][route]
@@ -195,6 +232,10 @@ def add_network(year, quarter):
         # add density
     
         data[i]['density'] = density_dict[carrier]
+        
+        # add diameter
+    
+        data[i]['diameter'] = density_dict[carrier]
     
     # save bin datafile to \temp (same filename as \input datafile)
         
