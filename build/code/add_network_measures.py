@@ -235,7 +235,7 @@ def add_network(year, quarter):
         
         # add diameter
     
-        data[i]['diameter'] = density_dict[carrier]
+        data[i]['diameter'] = diameter_dict[carrier]
     
     # save bin datafile to \temp (same filename as \input datafile)
         
