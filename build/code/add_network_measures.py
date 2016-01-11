@@ -38,6 +38,8 @@ def add_network(year, quarter):
     
     density_dict = {}
     diameter_dict = {}
+    nodes_dict = {}
+    edges_dict = {}
     
     DCroute_dict = {}
     CCroute_dict = {}
@@ -62,6 +64,13 @@ def add_network(year, quarter):
         
         g = adjacency_matrix(data, N, carrier)
         Nbar, gbar = remove_zeros(N, g)
+        
+        number_nodes = len(gbar)
+        number_edges = sum(sum(gbar)) / 2     
+        
+        nodes_dict[carrier] = number_nodes
+        edges_dict[carrier] = number_edges
+        
         network = (N, g)
         network_bar = (Nbar, gbar)
         inv_d = invert_dict(Nbar)
@@ -236,6 +245,14 @@ def add_network(year, quarter):
         # add diameter
     
         data[i]['diameter'] = diameter_dict[carrier]
+        
+        # add number of nodes
+    
+        data[i]['nodes'] = nodes_dict[carrier]
+        
+        # add number of edges
+    
+        data[i]['edges'] = edges_dict[carrier]
     
     # save bin datafile to \temp (same filename as \input datafile)
         
