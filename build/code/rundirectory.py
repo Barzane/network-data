@@ -16,7 +16,7 @@ for folder in ['..\\output\\*', '..\\temp\\*', '..\\input\\*']:
     for filename in folder_contents:
         os.remove(filename)
 
-for (year, quarter) in [(2013, 4)]:
+for (year, quarter) in [(y, q) for y in range(1999, 2014) for q in range(1, 5)]:
 
     print
     print str(year) + 'Q' + str(quarter)
