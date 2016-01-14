@@ -4,6 +4,7 @@ import os, glob, shutil
 
 import add_network_measures, filter_data, carrier_dummy
 import competitive_dummy, airport_mktshr_hhi, bin_to_txt
+import convert_bin_to_text, merge_bin
 
 print
 
@@ -16,7 +17,17 @@ for folder in ['..\\output\\*', '..\\temp\\*', '..\\input\\*']:
     for filename in folder_contents:
         os.remove(filename)
 
-for (year, quarter) in [(y, q) for y in range(1999, 2014) for q in range(1, 5)]:
+full_sample = False
+
+if full_sample:
+    
+    time_periods = [(y, q) for y in range(1999, 2014) for q in range(1, 5)]
+    
+else:
+    
+    time_periods = [(2013, 3), (2013, 4)]
+
+for (year, quarter) in time_periods:
 
     print
     print str(year) + 'Q' + str(quarter)
@@ -55,22 +66,26 @@ for (year, quarter) in [(y, q) for y in range(1999, 2014) for q in range(1, 5)]:
     
     bin_to_txt.convert_to_txt(year, quarter)
     
-    print 'move pyc files (byte code) from \code to \\temp'
-    
-    src = '.\\'
-    dst = '..\\temp\\'
-    
-    for folder in [src + '*.pyc']:
-        
-        folder_contents = glob.glob(folder)
-        
-        for filename in folder_contents:        
-            filename_split = filename.split('\\')[-1]
-            shutil.move(filename, dst + filename_split)
-    
     print 'move bin from \\temp to \output'
     
     src = '..\\temp\\data_' + str(year) + '_' + str(quarter) + '.bin'
     dst = '..\\output\\data_' + str(year) + '_' + str(quarter) + '.bin'
     
     shutil.move(src, dst)
+
+print 'merge .bin output files'
+
+merge_bin.wrapper(time_periods)    
+
+print 'move pyc files (byte code) from \code to \\temp'
+
+src = '.\\'
+dst = '..\\temp\\'
+
+for folder in [src + '*.pyc']:
+    
+    folder_contents = glob.glob(folder)
+    
+    for filename in folder_contents:        
+        filename_split = filename.split('\\')[-1]
+        shutil.move(filename, dst + filename_split)
