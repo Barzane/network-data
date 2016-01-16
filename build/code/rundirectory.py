@@ -4,10 +4,10 @@ import os, glob, shutil
 
 import add_network_measures, filter_data, carrier_dummy
 import competitive_dummy, airport_mktshr_hhi, bin_to_txt
-import convert_bin_to_text, merge_bin
+import convert_bin_to_text, merge_bin, analysis_full_bin
 
-print
-
+#print
+#
 #print 'clear contents of \output and \\temp and \input'
 #
 #for folder in ['..\\output\\*', '..\\temp\\*', '..\\input\\*']:
@@ -17,7 +17,7 @@ print
 #    for filename in folder_contents:
 #        os.remove(filename)
 
-full_sample = False
+full_sample = True
 
 if full_sample:
     
@@ -72,14 +72,18 @@ else:
 #    dst = '..\\output\\data_' + str(year) + '_' + str(quarter) + '.bin'
 #    
 #    shutil.move(src, dst)
+#
+#print 'merge .bin output files'
+#
+#merge_bin.wrapper(time_periods)    
+#
+#print 'convert .bin to .txt'
+#
+#convert_bin_to_text.convert()
 
-print 'merge .bin output files'
+print 'analyzing full-sample data .bin'
 
-merge_bin.wrapper(time_periods)    
-
-print 'convert .bin to .txt'
-
-convert_bin_to_text.convert()
+analysis_full_bin.analysis()
 
 print 'move pyc files (byte code) from \code to \\temp'
 
