@@ -20,9 +20,17 @@ def analysis():
     carrier_choice = 'F9'
     carrier_name = 'Frontier Airlines'
     
+    airport_choice = 'DEN'
+    airport_name = 'Denver International'
+    
     name_list = [name + '_' + carrier_choice for name in ['density', 'edges', 'nodes', 'diameter']]
+    centrality_list = [name + '_' + carrier_choice for name in ['origindegree', 'origincloseness', 'originbetweenness', 'origineigenvector']]
     
     for name in name_list:
+        
+        analysis[name] = [x_axis, [numpy.nan] * len(x_axis)]
+        
+    for name in centrality_list:
         
         analysis[name] = [x_axis, [numpy.nan] * len(x_axis)]
     
@@ -52,6 +60,14 @@ def analysis():
                 
                     analysis[name][1][counter] = data[key][name.split('_')[0]]    
     
+        if carrier == carrier_choice:
+            if origin == airport_choice:
+                if math.isnan(analysis[centrality_list[0]][1][counter]):
+                    
+                    for name in centrality_list:
+                
+                        analysis[name][1][counter] = data[key][name.split('_')[0]]
+    
     for name in name_list:
         
         fig = plt.figure()
@@ -61,5 +77,18 @@ def analysis():
         plt.ylabel(name.split('_')[0], fontsize=16)
         plt.xticks(x_axis, x_labels)
         fig.savefig('..\\output\\' + name + '.png')
-    
+
+    for name in centrality_list:
+        
+        fig = plt.figure()
+        plt.plot(analysis[name][0], analysis[name][1])
+        plt.title(carrier_name + ' (' + airport_name + ')')
+        plt.xlabel('time', fontsize=16)
+        plt.ylabel(name.split('_')[0], fontsize=16)
+        plt.xticks(x_axis, x_labels)
+        axes = plt.gca()
+#        http://stackoverflow.com/questions/2821072/is-there-a-better-way-of-making-numpy-argmin-ignore-nan-values
+        axes.set_ylim([0.95 * numpy.nanmin(analysis[name][1]), 1.05 * numpy.nanmax(analysis[name][1])])
+        fig.savefig('..\\output\\' + name + '.png')
+        
     return None
