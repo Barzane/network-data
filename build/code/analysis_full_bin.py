@@ -13,11 +13,25 @@ def analysis():
     
     analysis = dict()
     x_axis = range(1, 61)
-    analysis['density_WN'] = [x_axis, [numpy.nan] * len(x_axis)]
-    analysis['edges_WN'] = [x_axis, [numpy.nan] * len(x_axis)]
-    analysis['nodes_WN'] = [x_axis, [numpy.nan] * len(x_axis)]
-    analysis['diameter_WN'] = [x_axis, [numpy.nan] * len(x_axis)]
     
+#    carrier_choice = 'WN'
+#    carrier_name = 'Southwest Airlines'
+    
+    carrier_choice = 'F9'
+    carrier_name = 'Frontier Airlines'
+    
+    name_list = [name + '_' + carrier_choice for name in ['density', 'edges', 'nodes', 'diameter']]
+    
+    for name in name_list:
+        
+        analysis[name] = [x_axis, [numpy.nan] * len(x_axis)]
+    
+    x_labels = [str(x) for x in range(1999, 2014) for y in range(1, 5)]
+    
+    for i in range(len(x_labels)):
+        if i % 8 != 0:
+            x_labels[i] = ''    
+        
     for key in data:
         
         data_s = key.split('_')
@@ -31,35 +45,21 @@ def analysis():
         
         counter = data[key]['time'] - 24
         
-        if carrier == 'WN':
-            if math.isnan(analysis['density_WN'][1][counter]):
-                analysis['density_WN'][1][counter] = data[key]['density']
-                analysis['edges_WN'][1][counter] = data[key]['edges']
-                analysis['nodes_WN'][1][counter] = data[key]['nodes']
-                analysis['diameter_WN'][1][counter] = data[key]['diameter']
+        if carrier == carrier_choice:
+            if math.isnan(analysis[name_list[0]][1][counter]):
+                
+                for name in name_list:
+                
+                    analysis[name][1][counter] = data[key][name.split('_')[0]]    
     
-    plt.figure()
-    plt.plot(analysis['density_WN'][0], analysis['density_WN'][1])
-    plt.xlabel('time', fontsize=16)
-    plt.ylabel('density', fontsize=16)
-    plt.show()
-    
-    plt.figure()
-    plt.plot(analysis['edges_WN'][0], analysis['edges_WN'][1])
-    plt.xlabel('time', fontsize=16)
-    plt.ylabel('edges', fontsize=16)
-    plt.show()
-    
-    plt.figure()
-    plt.plot(analysis['nodes_WN'][0], analysis['nodes_WN'][1])
-    plt.xlabel('time', fontsize=16)
-    plt.ylabel('nodes', fontsize=16)
-    plt.show() 
-    
-    plt.figure()
-    plt.plot(analysis['diameter_WN'][0], analysis['diameter_WN'][1])
-    plt.xlabel('time', fontsize=16)
-    plt.ylabel('diameter', fontsize=16)
-    plt.show()
+    for name in name_list:
+        
+        fig = plt.figure()
+        plt.plot(analysis[name][0], analysis[name][1])
+        plt.title(carrier_name)
+        plt.xlabel('time', fontsize=16)
+        plt.ylabel(name.split('_')[0], fontsize=16)
+        plt.xticks(x_axis, x_labels)
+        fig.savefig('..\\output\\' + name + '.png')
     
     return None
