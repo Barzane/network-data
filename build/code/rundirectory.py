@@ -20,16 +20,40 @@ def horizontal():
     
     return None
 
-#print
-#
-#print 'clear contents of \output and \\temp and \input'
-#
-#for folder in ['..\\output\\*', '..\\temp\\*', '..\\input\\*']:
-#
-#    folder_contents = glob.glob(folder)
-#
-#    for filename in folder_contents:
-#        os.remove(filename)
+def manual_transfer_reminder():
+
+    print 'manually transfer data_yyyy_q.bin datafiles (output from data-bin) to data\\ before run'
+    print
+    print '** DISK SPACE REQUIREMENT: ~ 171 MB to store 84 quarterly datafiles (1993_1 to 2013_4) **'
+    print
+    
+    raw_input('press a key to continue')
+    
+    return None
+
+def clear_output_temp_input():
+    
+    print 'clear contents of \output and \\temp and \input'
+
+    for folder in ['..\\output\\*', '..\\temp\\*', '..\\input\\*']:
+    
+        folder_contents = glob.glob(folder)
+    
+        for filename in folder_contents:
+            
+            os.remove(filename)
+    
+    return None
+
+horizontal()
+   
+manual_transfer_reminder()
+horizontal()
+    
+#clear_output_temp_input()
+horizontal()
+
+sss
 
 full_sample = True
 
