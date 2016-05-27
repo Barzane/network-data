@@ -31,14 +31,13 @@ def add_network(year, quarter):
     data = cPickle.load(f)
     f.close()
     
-    all_airlines = list_of_airlines.list_of_airlines(data)
-    
-    print all_airlines
-    
-    sss
-    
+    all_airlines = list_of_airlines.list_of_airlines(data)    
     all_airports = list_of_airports.list_of_airports(data)
+    
     N = map_airports_code.map_airports_code(all_airports)  
+    
+    print N
+    sss
     
     DC_dict = {}
     CC_dict = {}

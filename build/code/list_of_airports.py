@@ -28,10 +28,12 @@ def list_of_airports(data):
         origin = keys_list[0]
         destination = keys_list[1]
 
-        if origin not in all_airports :
+        if origin not in all_airports:
+            
             all_airports.append(origin)
 
-        if destination not in all_airports : 
+        if destination not in all_airports: 
+            
             all_airports.append(destination)
 
     all_airports.sort()
