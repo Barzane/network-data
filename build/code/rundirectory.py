@@ -2,9 +2,23 @@
 
 import os, glob, shutil
 
-import add_network_measures, filter_data, carrier_dummy
-import competitive_dummy, airport_mktshr_hhi, bin_to_txt
-import convert_bin_to_text, merge_bin, analysis_full_bin
+import add_network_measures
+import filter_data
+import carrier_dummy
+import competitive_dummy
+import airport_mktshr_hhi
+import bin_to_txt
+import convert_bin_to_text
+import merge_bin
+import analysis_full_bin
+
+def horizontal():
+    
+    print
+    print '-'*90
+    print
+    
+    return None
 
 #print
 #
