@@ -3,19 +3,19 @@
 import cPickle, numpy
 
 import list_of_airlines
-from list_of_airports import list_of_airports
-from map_airports_code import map_airports_code
-from adjacency_matrix import adjacency_matrix
-from remove_zeros import remove_zeros
-from invert_dict import invert_dict
-from distance_matrix import distance_matrix
-from degree_centrality import degree_centrality
-from closeness_centrality import closeness_centrality
-from centrality_betweenness import all_centrality_betweenness
-from centrality_eigenvector import centrality_eigenvector
-from density_degree_distribution import density_degree_distribution
-from route_level_g import route_level_g
-from connected import connected
+import list_of_airports
+import map_airports_code
+import adjacency_matrix
+import remove_zeros
+import invert_dict
+import distance_matrix
+import degree_centrality
+import closeness_centrality
+import centrality_betweenness
+import centrality_eigenvector
+import density_degree_distribution
+import route_level_g
+import connected
 
 import other_carrier_centrality
 
@@ -37,8 +37,8 @@ def add_network(year, quarter):
     
     sss
     
-    all_airports = list_of_airports(data)
-    N = map_airports_code(all_airports)  
+    all_airports = list_of_airports.list_of_airports(data)
+    N = map_airports_code.map_airports_code(all_airports)  
     
     DC_dict = {}
     CC_dict = {}
@@ -71,8 +71,8 @@ def add_network(year, quarter):
         BCroute_dict[carrier] = {}
         ECroute_dict[carrier] = {}
         
-        g = adjacency_matrix(data, N, carrier)
-        Nbar, gbar = remove_zeros(N, g)
+        g = adjacency_matrix.adjacency_matrix(data, N, carrier)
+        Nbar, gbar = remove_zeros.remove_zeros(N, g)
         
         number_nodes = len(gbar)
         number_edges = sum(sum(gbar)) / 2     
@@ -82,36 +82,36 @@ def add_network(year, quarter):
         
         network = (N, g)
         network_bar = (Nbar, gbar)
-        inv_d = invert_dict(Nbar)
+        inv_d = invert_dict.invert_dict(Nbar)
         
-        network_star = route_level_g(network_bar)        
+        network_star = route_level_g.route_level_g(network_bar)        
         Nstar = network_star[0]
         gstar = network_star[1]
-        inv_d_star = invert_dict(Nstar)
+        inv_d_star = invert_dict.invert_dict(Nstar)
         
         try:
             
-            diameter_g = connected(gbar)
+            diameter_g = connected.connected(gbar)
             
         except:
             
             diameter_g = 'NA'
             
-#        diameter_gstar = connected(gstar)
+#        diameter_gstar = connected.connected(gstar)
 #        
 #        print 'diameter g = ', diameter_g
 #        print 'diameter gstar = ', diameter_gstar
         
-        D, average_path_length = distance_matrix(gbar)
+        D, average_path_length = distance_matrix.distance_matrix(gbar)
         
         if len(Nstar) > 1:
-            Dstar, average_path_length_star = distance_matrix(gstar)
+            Dstar, average_path_length_star = distance_matrix.distance_matrix(gstar)
             
-        density, Pd = density_degree_distribution(network_bar)
+        density, Pd = density_degree_distribution.density_degree_distribution(network_bar)
         
 #        try:
 #            
-#            density_star, Pd_star = density_degree_distribution(network_star)
+#            density_star, Pd_star = density_degree_distribution.density_degree_distribution(network_star)
 #            print density, density_star
 #            
 #        except ZeroDivisionError:
@@ -122,22 +122,22 @@ def add_network(year, quarter):
             
         density_dict[carrier] = density
             
-        DC = degree_centrality(network_bar)
-        DCroute = degree_centrality(network_star)
+        DC = degree_centrality.degree_centrality(network_bar)
+        DCroute = degree_centrality.degree_centrality(network_star)
         
-        CC = closeness_centrality(gbar)
+        CC = closeness_centrality.closeness_centrality(gbar)
         
         if len(Nstar) > 1:
-            CCroute = closeness_centrality(gstar)
+            CCroute = closeness_centrality.closeness_centrality(gstar)
         
-        eigenvector_map = centrality_eigenvector(gbar)
-        eigenvector_map_route = centrality_eigenvector(gstar)
+        eigenvector_map = centrality_eigenvector.centrality_eigenvector(gbar)
+        eigenvector_map_route = centrality_eigenvector.centrality_eigenvector(gstar)
         
         if len(Nbar) > 2 and not numpy.isinf(average_path_length):
-            BC = all_centrality_betweenness(D)
+            BC = centrality_betweenness.all_centrality_betweenness(D)
             
 #        if len(Nstar) > 1 and not numpy.isinf(average_path_length_star):
-#            BCroute = all_centrality_betweenness(Dstar)
+#            BCroute = centrality_betweenness.all_centrality_betweenness(Dstar)
     
         for key in DC:
             DC_dict[carrier][inv_d[key]] = DC[key]
