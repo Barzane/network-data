@@ -2,7 +2,7 @@
 
 import cPickle, numpy
 
-from list_of_airlines import list_of_airlines
+import list_of_airlines
 from list_of_airports import list_of_airports
 from map_airports_code import map_airports_code
 from adjacency_matrix import adjacency_matrix
@@ -21,13 +21,22 @@ import other_carrier_centrality
 
 def add_network(year, quarter):
 
+    print '\nadd network measures to data_year_quarter.bin, save to \\temp'
+
     src = '..\\input\\data_' + str(year) + '_' + str(quarter) + '.bin'
+    
+    print '\nloading', src
     
     f = open(src, 'rb')
     data = cPickle.load(f)
     f.close()
     
-    all_airlines = list_of_airlines(data)
+    all_airlines = list_of_airlines.list_of_airlines(data)
+    
+    print all_airlines
+    
+    sss
+    
     all_airports = list_of_airports(data)
     N = map_airports_code(all_airports)  
     

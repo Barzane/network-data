@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import cPickle
-
 def list_of_airlines(data):
-    """FUNCTION create list of airlines codes
+    """FUNCTION create list of airline codes
 		INPUT	data dictionary for a single year-quarter
 		SET	output list to be empty <output = []>
 		FOR	each item in the list of data keys
@@ -26,6 +24,7 @@ def list_of_airlines(data):
         airline = keys_list[2]
         
         if airline not in all_airlines:
+            
             all_airlines.append(airline)
        
     all_airlines.sort()

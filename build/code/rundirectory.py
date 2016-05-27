@@ -27,7 +27,7 @@ def manual_transfer_reminder():
     print '** DISK SPACE REQUIREMENT: ~ 171 MB to store 84 quarterly datafiles (1993_1 to 2013_4) **'
     print
     
-    raw_input('press a key to continue')
+#    raw_input('press a key to continue')
     
     return None
 
@@ -50,12 +50,10 @@ horizontal()
 manual_transfer_reminder()
 horizontal()
     
-#clear_output_temp_input()
+clear_output_temp_input()
 horizontal()
 
-sss
-
-full_sample = True
+full_sample = False
 
 if full_sample:
     
@@ -65,52 +63,53 @@ else:
     
     time_periods = [(2013, 3), (2013, 4)]
 
-#for (year, quarter) in time_periods:
-#
-#    print
-#    print str(year) + 'Q' + str(quarter)
-#    
-#    print 'copy data_year_quarter.bin datafile from ..\data to \input'
-#    
-#    src = '..\\..\\data\\data_' + str(year) + '_' + str(quarter) + '.bin'
-#    dst = '..\\input\\data_' + str(year) + '_' + str(quarter) + '.bin'
-#    
-#    shutil.copyfile(src, dst)
-#    
+for (year, quarter) in time_periods:
+
+    print str(year) + 'Q' + str(quarter)
+    
+    print '\ncopy data_year_quarter.bin datafile from ..\data to \input'
+    
+    src = '..\\..\\data\\data_' + str(year) + '_' + str(quarter) + '.bin'
+    dst = '..\\input\\data_' + str(year) + '_' + str(quarter) + '.bin'
+    
+    shutil.copyfile(src, dst)
+    
 #    print 'add network measures to data_year_quarter.bin, save to \\temp'
+    
+    add_network_measures.add_network(year, quarter)
+    
+    sss
+    
+    low_route_threshold = 10
+    
+    print 'remove carriers with low number of routes (threshold = ' + str(low_route_threshold) + '), save to \\temp'
+    
+    filter_data.filter_low_routes_by_carrier(year, quarter, low_route_threshold)
+    
+#    print 'add carrier dummies, save to \\temp'
 #    
-#    add_network_measures.add_network(year, quarter)
-#    
-#    low_route_threshold = 10
-#    
-#    print 'remove carriers with low number of routes (threshold = ' + str(low_route_threshold) + '), save to \\temp'
-#    
-#    filter_data.filter_low_routes_by_carrier(year, quarter, low_route_threshold)
-#    
-##    print 'add carrier dummies, save to \\temp'
-##    
-##    carrier_dummy.add_dummies(year, quarter)
-#    
-#    print 'add Dai et al (2014) monopoly, duopoly, competitive dummies, save to \\temp'
-#    print '...Evans & Kessides (1993) IV function called by competitive_dummy.py'
-#    
-#    competitive_dummy.add_dummies(year, quarter)
-#    
-#    print 'add airport-level marketshare and airport-level hhi, save to \\temp'
-#    
-#    airport_mktshr_hhi.add_variables(year, quarter)
-#    
-#    print 'convert bin to txt, save txt to \output'
-#    
-#    bin_to_txt.convert_to_txt(year, quarter)
-#    
-#    print 'move bin from \\temp to \output'
-#    
-#    src = '..\\temp\\data_' + str(year) + '_' + str(quarter) + '.bin'
-#    dst = '..\\output\\data_' + str(year) + '_' + str(quarter) + '.bin'
-#    
-#    shutil.move(src, dst)
-#
+#    carrier_dummy.add_dummies(year, quarter)
+    
+    print 'add Dai et al (2014) monopoly, duopoly, competitive dummies, save to \\temp'
+    print '...Evans & Kessides (1993) IV function called by competitive_dummy.py'
+    
+    competitive_dummy.add_dummies(year, quarter)
+    
+    print 'add airport-level marketshare and airport-level hhi, save to \\temp'
+    
+    airport_mktshr_hhi.add_variables(year, quarter)
+    
+    print 'convert bin to txt, save txt to \output'
+    
+    bin_to_txt.convert_to_txt(year, quarter)
+    
+    print 'move bin from \\temp to \output'
+    
+    src = '..\\temp\\data_' + str(year) + '_' + str(quarter) + '.bin'
+    dst = '..\\output\\data_' + str(year) + '_' + str(quarter) + '.bin'
+    
+    shutil.move(src, dst)
+
 #print 'merge .bin output files'
 #
 #merge_bin.wrapper(time_periods)    
