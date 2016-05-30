@@ -25,7 +25,7 @@ def add_network(year, quarter):
 
     src = '..\\input\\data_' + str(year) + '_' + str(quarter) + '.bin'
     
-    print '\nloading', src
+    print '\nloading', src, '\n'
     
     f = open(src, 'rb')
     data = cPickle.load(f)
@@ -34,10 +34,7 @@ def add_network(year, quarter):
     all_airlines = list_of_airlines.list_of_airlines(data)    
     all_airports = list_of_airports.list_of_airports(data)
     
-    N = map_airports_code.map_airports_code(all_airports)  
-    
-    print N
-    sss
+    N = map_airports_code.map_airports_code(all_airports)
     
     DC_dict = {}
     CC_dict = {}
@@ -71,6 +68,10 @@ def add_network(year, quarter):
         ECroute_dict[carrier] = {}
         
         g = adjacency_matrix.adjacency_matrix(data, N, carrier)
+        
+        print sum(g)
+        sss
+        
         Nbar, gbar = remove_zeros.remove_zeros(N, g)
         
         number_nodes = len(gbar)
