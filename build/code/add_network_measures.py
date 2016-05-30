@@ -134,7 +134,16 @@ def add_network(year, quarter):
         
         eigenvector_map = centrality_eigenvector.centrality_eigenvector(gbar)
         eigenvector_map_route = centrality_eigenvector.centrality_eigenvector(gstar)
-        
+            
+        if len(Nbar) > 2 and not numpy.isinf(average_path_length):
+            
+            BC = centrality_betweenness.all_centrality_betweenness(D)
+            
+#        if len(Nstar) > 1 and not numpy.isinf(average_path_length_star):
+#            
+#            BCroute = centrality_betweenness.all_centrality_betweenness(Dstar)
+    
+    
         if test_output and test_condition:
 
             print '\nTEST OUTPUT'
@@ -196,15 +205,20 @@ def add_network(year, quarter):
                     
             print 'maximum eigenvector centrality', max_EC, 'index', max_EC_i, 'node', inv_d[max_EC_i]
 
-
+            max_BC = 0
+            max_BC_i = None
+            
+            for i in BC:
+                
+                if BC[i] > max_BC:
+                    
+                    max_BC = BC[i]
+                    max_BC_i = i
+                    
+            print 'maximum betweenness centrality', max_BC, 'index', max_BC_i, 'node', inv_d[max_BC_i]
+           
             sss
             
-        if len(Nbar) > 2 and not numpy.isinf(average_path_length):
-            BC = centrality_betweenness.all_centrality_betweenness(D)
-            
-#        if len(Nstar) > 1 and not numpy.isinf(average_path_length_star):
-#            BCroute = centrality_betweenness.all_centrality_betweenness(Dstar)
-    
         for key in DC:
             DC_dict[carrier][inv_d[key]] = DC[key]
         

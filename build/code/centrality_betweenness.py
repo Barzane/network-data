@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from shortest_paths import shortest_paths
+import shortest_paths
 
 def centrality_betweenness(i, D):
     """CENTRALITY-BETWEENNESS(i, D)
 		ratio_sum = 0 // a float, will contain the partial sum of P_i(k,j) / P(k, j)
-		for k = 0 to (D.size - 2) // D.size is the number of nodes in N; count starts at 0
+		for k = 0 to (D.size - 2) // D.size is the number of nodes in N; 
+  count starts at 0
 			for j = k + 1 to (D.size - 1) // the nested loop will consider all k < j
 				if i != k and i != j // i cannot be one of the endpoints of the path
 					paths = SHORTEST-PATHS(k, j, D) // list of geodesics
@@ -27,7 +28,8 @@ def centrality_betweenness(i, D):
             if i != j and i != k:
                 
                 if (k, j) not in SP.keys():
-                    SP[(k, j)] = shortest_paths(k, j, D)
+                    
+                    SP[(k, j)] = shortest_paths.shortest_paths(k, j, D)
                     
                 paths = SP[(k, j)]
                 
@@ -53,6 +55,16 @@ def all_centrality_betweenness(D):
     centrality_dictionary = {}
     
     for i in range(len(D)):
-        centrality_dictionary[i] = centrality_betweenness(i, D)
         
+        centrality_dictionary[i] = centrality_betweenness(i, D)
+    
+    print 'TEST CODE'
+    print
+    
+    for k in range(20):
+        
+        print k, SP.keys()[k], SP[SP.keys()[k]]
+        
+        sss    
+    
     return centrality_dictionary
