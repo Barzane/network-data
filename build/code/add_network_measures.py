@@ -69,10 +69,11 @@ def add_network(year, quarter):
         
         g = adjacency_matrix.adjacency_matrix(data, N, carrier)
         
-        print sum(g)
-        sss
-        
         Nbar, gbar = remove_zeros.remove_zeros(N, g)
+        
+        print Nbar, gbar[2]
+        
+        sss
         
         number_nodes = len(gbar)
         number_edges = sum(sum(gbar)) / 2     

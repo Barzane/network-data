@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
 
 import numpy
-from map_airports_code import map_airports_code
 
-def remove_zeros(Nodes_dict,g) :
+import map_airports_code
+
+def remove_zeros(Nodes_dict,g):
     """FUNCTION	remove zero rows and columns from adjacency matrix g
-        <(N,g) to (Nbar,gbar)>
+        <(N, g) to (Nbar, gbar)>
 		INPUT	adjacency matrix g
 		INPUT	dictionary of nodes (output from Task 5)
 		DETERMINE	integer n (the dimension of g)
 		SET	an empty list of unused airports <unused = []>
 		SET	airport_list equal to keys of nodes dictionary
-		SORT	airport_list alphabetically
+		SORT  airport_list alphabetically
 		SET	new_airport_list equal to an empty list
 		FOR	row number i in 0,1,...,n-1 <range(n)>
 			IF	row g[i] only contains zeros
@@ -40,7 +41,8 @@ def remove_zeros(Nodes_dict,g) :
     unused_airports = []
     new_airports_list=[]
     
-    for keys in Nodes_dict.keys(): 
+    for keys in Nodes_dict.keys():
+        
         airports_list.append(keys)
 
     airports_list.sort()
@@ -53,10 +55,11 @@ def remove_zeros(Nodes_dict,g) :
             new_airports_list.append(airports_list[i])
     
     if unused_airports != []:
+        
         gbar = numpy.delete(g, tuple(unused_airports), axis=0)
         gbar = numpy.delete(gbar, tuple(unused_airports), axis=1)
     
-    Nbar = map_airports_code(new_airports_list)
+    Nbar = map_airports_code.map_airports_code(new_airports_list)
     
-    return Nbar,gbar
+    return Nbar, gbar
     
