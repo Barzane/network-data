@@ -132,6 +132,9 @@ def add_network(year, quarter):
         if len(Nstar) > 1:
             CCroute = closeness_centrality.closeness_centrality(gstar)
         
+        eigenvector_map = centrality_eigenvector.centrality_eigenvector(gbar)
+        eigenvector_map_route = centrality_eigenvector.centrality_eigenvector(gstar)
+        
         if test_output and test_condition:
 
             print '\nTEST OUTPUT'
@@ -178,12 +181,24 @@ def add_network(year, quarter):
                     max_CC_i = i
                     
             print 'maximum closeness centrality', max_CC, 'index', max_CC_i, 'node', inv_d[max_CC_i]
+
+            print 'eigenvector_map', eigenvector_map
             
-            sss        
-        
-        eigenvector_map = centrality_eigenvector.centrality_eigenvector(gbar)
-        eigenvector_map_route = centrality_eigenvector.centrality_eigenvector(gstar)
-        
+            max_EC = 0
+            max_EC_i = None
+            
+            for i in eigenvector_map:
+                
+                if eigenvector_map[i] > max_EC:
+                    
+                    max_EC = eigenvector_map[i]
+                    max_EC_i = i
+                    
+            print 'maximum eigenvector centrality', max_EC, 'index', max_EC_i, 'node', inv_d[max_EC_i]
+
+
+            sss
+            
         if len(Nbar) > 2 and not numpy.isinf(average_path_length):
             BC = centrality_betweenness.all_centrality_betweenness(D)
             
