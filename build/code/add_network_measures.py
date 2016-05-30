@@ -97,6 +97,19 @@ def add_network(year, quarter):
         except:
             
             diameter_g = 'NA'
+            
+#        diameter_gstar = connected.connected(gstar)
+#        
+#        print 'diameter g = ', diameter_g
+#        print 'diameter gstar = ', diameter_gstar
+        
+        D, average_path_length = distance_matrix.distance_matrix(gbar)
+        
+        if len(Nstar) > 1:
+            
+            Dstar, average_path_length_star = distance_matrix.distance_matrix(gstar)
+            
+        density, Pd = density_degree_distribution.density_degree_distribution(network_bar)
 
         if test_output and test_condition:
 
@@ -110,20 +123,12 @@ def add_network(year, quarter):
             print 'number_nodes_star', number_nodes_star
             print 'number_edges_star', number_edges_star
             print 'diameter_g', diameter_g
+            print 'distance matrix D', D
+            print 'average_path_length', average_path_length
+            print 'density', density
+            print 'degree distribution Pd', Pd
             
-        sss
-            
-#        diameter_gstar = connected.connected(gstar)
-#        
-#        print 'diameter g = ', diameter_g
-#        print 'diameter gstar = ', diameter_gstar
-        
-        D, average_path_length = distance_matrix.distance_matrix(gbar)
-        
-        if len(Nstar) > 1:
-            Dstar, average_path_length_star = distance_matrix.distance_matrix(gstar)
-            
-        density, Pd = density_degree_distribution.density_degree_distribution(network_bar)
+            sss
         
 #        try:
 #            
