@@ -17,11 +17,13 @@ def connected(g):
 			SET	matrixsum = I + G1 + G2 <numpy.eye(n, dtype=numpy.int)>
 			<I is the n x n identity matrix>
 			SET	matrixsum = G1 + G2
-			SET	condition = no zero elements in the upper-triangle of matrixsum (including the leading diagonal)
-SET	condition = no zero elements in the upper-triangle of matrixsum (not including the leading diagonal)
-			<numpy.min(matrixsum[numpy.triu_indices(n)])!=0>
-<matrixsum[numpy.triu_indices(nodes)]==0).any() ==False>
-<matrixsum[numpy.triu_indices(nodes,1)]==0).any() ==False>
+			SET	condition = no zero elements in the upper-triangle of matrixsum 
+   (including the leading diagonal)
+            SET	condition = no zero elements in the upper-triangle of matrixsum 
+   (not including the leading diagonal)
+               <numpy.min(matrixsum[numpy.triu_indices(n)]) != 0>
+               <matrixsum[numpy.triu_indices(nodes)]==0).any() == False>
+               <matrixsum[numpy.triu_indices(nodes,1)]==0).any() == False>
 			IF	condition is True <if condition>	THEN <(N, g) connected>
 				SET	diameter = j
 				SET	flag = False <terminate search>
@@ -38,6 +40,7 @@ SET	condition = no zero elements in the upper-triangle of matrixsum (not includi
     G = numpy.zeros((n, n), dtype = numpy.int)
     G_plus = g 
     diameter = float("inf")
+    
     flag = True
     j = 1
     

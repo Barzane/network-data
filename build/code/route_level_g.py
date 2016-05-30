@@ -2,7 +2,7 @@
 
 import numpy
 
-from invert_dict import invert_dict
+import invert_dict
 
 def route_level_g(network):
     
@@ -13,7 +13,7 @@ def route_level_g(network):
 #    N = {'one':0, 'two':1, 'three':2, 'four':3, 'five':4}
 #    g = numpy.array([[0,0,1,0,0], [0,0,1,0,1], [1,1,0,1,1], [0,0,1,0,1], [0,1,1,1,0]])    
     
-    inv_d = invert_dict(N)
+    inv_d = invert_dict.invert_dict(N)
     
     number_of_nodes = len(N)
     number_of_routes = int(sum(sum(g)) / 2)
@@ -62,9 +62,9 @@ def route_level_g(network):
     checksum = (sum(sum(numpy.triu(g2, 1))) != sum(sum(gstar)) / 2)
     
     if checksum:
+        
         raise ArithmeticError('gstar checksum condition not satisfied')
     
-    network_star = (invert_dict(route_dict), gstar)
+    network_star = (invert_dict.invert_dict(route_dict), gstar)
     
     return network_star
-

@@ -21,6 +21,8 @@ import other_carrier_centrality
 
 def add_network(year, quarter):
 
+    test_output = True
+
     print '\nadd network measures to data_year_quarter.bin, save to \\temp'
 
     src = '..\\input\\data_' + str(year) + '_' + str(quarter) + '.bin'
@@ -55,6 +57,8 @@ def add_network(year, quarter):
     
     for carrier in all_airlines:
         
+        test_condition = (carrier == 'AA' and year == 2013 and quarter == 3)         
+        
         print '\t' + carrier + ' (' + str(count + 1) + ' of ' + str(len(all_airlines)) + ')'
         
         DC_dict[carrier] = {}
@@ -71,12 +75,8 @@ def add_network(year, quarter):
         
         Nbar, gbar = remove_zeros.remove_zeros(N, g)
         
-        print Nbar, gbar[2]
-        
-        sss
-        
         number_nodes = len(gbar)
-        number_edges = sum(sum(gbar)) / 2     
+        number_edges = sum(sum(gbar)) / 2
         
         nodes_dict[carrier] = number_nodes
         edges_dict[carrier] = number_edges
@@ -89,7 +89,7 @@ def add_network(year, quarter):
         Nstar = network_star[0]
         gstar = network_star[1]
         inv_d_star = invert_dict.invert_dict(Nstar)
-        
+            
         try:
             
             diameter_g = connected.connected(gbar)
@@ -97,6 +97,21 @@ def add_network(year, quarter):
         except:
             
             diameter_g = 'NA'
+
+        if test_output and test_condition:
+
+            print 'Nbar', Nbar
+            print 'gbar[2]', gbar[2] # Austin-Bergstrom International Airport            
+            print 'number_nodes', number_nodes
+            print 'number_edges', number_edges
+            print 'inv_d_star', inv_d_star
+            number_nodes_star = len(gstar)
+            number_edges_star = sum(sum(gstar)) / 2
+            print 'number_nodes_star', number_nodes_star
+            print 'number_edges_star', number_edges_star
+            print 'diameter_g', diameter_g
+            
+        sss
             
 #        diameter_gstar = connected.connected(gstar)
 #        

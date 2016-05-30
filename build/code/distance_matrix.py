@@ -4,10 +4,10 @@ import numpy
 
 def distance_matrix(g) :
     """FUNCTION	determine connectedness of (N, g) and compute its diameter
-INPUT	network tuple (N, g)
+        INPUT	network tuple (N, g)
 		SET	n x n adjacency matrix g <g = network[1]>
 		DETERMINE	integer n (the dimension of g)
-SET	an n x n matrix of zeros, G1 <numpy.zeros((n, n), dtype=numpy.int)>
+        SET	an n x n matrix of zeros, G1 <numpy.zeros((n, n), dtype=numpy.int)>
 <the matrix G1 will track which elements of D have been updated>
 		SET	an n x n matrix G2 = g
 		SET	n x n distance matrix D, initialized to 0s <D = numpy.zeros((n, n))>
