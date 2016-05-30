@@ -126,9 +126,17 @@ def add_network(year, quarter):
             
         DC = degree_centrality.degree_centrality(network_bar)
         DCroute = degree_centrality.degree_centrality(network_star)
+            
+        CC = closeness_centrality.closeness_centrality(gbar)
+        
+        if len(Nstar) > 1:
+            CCroute = closeness_centrality.closeness_centrality(gstar)
         
         if test_output and test_condition:
 
+            print '\nTEST OUTPUT'
+            print 'carrier', carrier, 'year', year, 'quarter', quarter            
+            print
             print 'Nbar', Nbar
             print 'gbar[2]', gbar[2] # Austin-Bergstrom International Airport            
             print 'number_nodes', number_nodes
@@ -157,12 +165,21 @@ def add_network(year, quarter):
                     
             print 'maximum degree centrality', max_DC, 'index', max_DC_i, 'node', inv_d[max_DC_i]
             
-            sss
+            print 'closeness centrality CC', CC
             
-        CC = closeness_centrality.closeness_centrality(gbar)
-        
-        if len(Nstar) > 1:
-            CCroute = closeness_centrality.closeness_centrality(gstar)
+            max_CC = 0
+            max_CC_i = None
+            
+            for i in CC:
+                
+                if CC[i] > max_CC:
+                    
+                    max_CC = CC[i]
+                    max_CC_i = i
+                    
+            print 'maximum closeness centrality', max_CC, 'index', max_CC_i, 'node', inv_d[max_CC_i]
+            
+            sss        
         
         eigenvector_map = centrality_eigenvector.centrality_eigenvector(gbar)
         eigenvector_map_route = centrality_eigenvector.centrality_eigenvector(gstar)
