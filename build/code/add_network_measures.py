@@ -145,6 +145,18 @@ def add_network(year, quarter):
             print 'degree distribution Pd', Pd
             print 'degree centrality DC', DC
             
+            max_DC = 0
+            max_DC_i = None
+            
+            for i in DC:
+                
+                if DC[i] > max_DC:
+                    
+                    max_DC = DC[i]
+                    max_DC_i = i
+                    
+            print 'maximum degree centrality', max_DC, 'index', max_DC_i, 'node', inv_d[max_DC_i]
+            
             sss
             
         CC = closeness_centrality.closeness_centrality(gbar)
