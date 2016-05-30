@@ -110,25 +110,6 @@ def add_network(year, quarter):
             Dstar, average_path_length_star = distance_matrix.distance_matrix(gstar)
             
         density, Pd = density_degree_distribution.density_degree_distribution(network_bar)
-
-        if test_output and test_condition:
-
-            print 'Nbar', Nbar
-            print 'gbar[2]', gbar[2] # Austin-Bergstrom International Airport            
-            print 'number_nodes', number_nodes
-            print 'number_edges', number_edges
-            print 'inv_d_star', inv_d_star
-            number_nodes_star = len(gstar)
-            number_edges_star = sum(sum(gstar)) / 2
-            print 'number_nodes_star', number_nodes_star
-            print 'number_edges_star', number_edges_star
-            print 'diameter_g', diameter_g
-            print 'distance matrix D', D
-            print 'average_path_length', average_path_length
-            print 'density', density
-            print 'degree distribution Pd', Pd
-            
-            sss
         
 #        try:
 #            
@@ -146,6 +127,26 @@ def add_network(year, quarter):
         DC = degree_centrality.degree_centrality(network_bar)
         DCroute = degree_centrality.degree_centrality(network_star)
         
+        if test_output and test_condition:
+
+            print 'Nbar', Nbar
+            print 'gbar[2]', gbar[2] # Austin-Bergstrom International Airport            
+            print 'number_nodes', number_nodes
+            print 'number_edges', number_edges
+            print 'inv_d_star', inv_d_star
+            number_nodes_star = len(gstar)
+            number_edges_star = sum(sum(gstar)) / 2
+            print 'number_nodes_star', number_nodes_star
+            print 'number_edges_star', number_edges_star
+            print 'diameter_g', diameter_g
+            print 'distance matrix D', D
+            print 'average_path_length', average_path_length
+            print 'density', density
+            print 'degree distribution Pd', Pd
+            print 'degree centrality DC', DC
+            
+            sss
+            
         CC = closeness_centrality.closeness_centrality(gbar)
         
         if len(Nstar) > 1:
