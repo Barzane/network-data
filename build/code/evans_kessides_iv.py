@@ -6,7 +6,7 @@ from scipy.stats.stats import pearsonr
 
 def add_iv(year, quarter):
     
-    print '...Evans & Kessides (1993) IV function'
+    print '\n...Evans & Kessides (1993) IV function'
     
     src = '..\\temp\\data_' + str(year) + '_' + str(quarter) + '.bin'
     dst = '..\\temp\\data_' + str(year) + '_' + str(quarter) + '.bin'
@@ -23,6 +23,10 @@ def add_iv(year, quarter):
     f = open(src_route_carrier_mktshr, 'rb')
     route_carrier_mktshr = cPickle.load(f)
     f.close()
+    
+#    print '\nTEST CODE'
+#    if year == 2013 and quarter == 3:
+#        print 'FLL_ORD market share', route_carrier_mktshr['FLL_ORD']
         
     evans_kessides_iv = {}    
     
@@ -39,6 +43,9 @@ def add_iv(year, quarter):
 
         route_data = sorted(route_x.items(), key = operator.itemgetter(1))
         route_data.reverse()
+        
+        print route_data
+        sss
         
 #        check for non-unique route market share
 #        how to define the IV in this case?
@@ -88,7 +95,7 @@ def add_iv(year, quarter):
             corr_x.append(route_carrier_mktshr[route][carrier])
             corr_y.append(evans_kessides_iv[route][carrier])
 
-    print '\t' + 'Pearson correlation (route mkt share, Evans & Kessides IV) = ' + str(pearsonr(corr_x, corr_y)[0])
+    print '\n\t' + 'Pearson correlation (route mkt share, Evans & Kessides IV) = ' + str(pearsonr(corr_x, corr_y)[0])
     
     f = open(dst, 'wb')
     cPickle.dump(data, f)

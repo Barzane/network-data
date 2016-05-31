@@ -144,9 +144,8 @@ def add_dummies(year, quarter):
     cPickle.dump(data, f)
     f.close()
     
-    sss
+#    print '[competitive_dummy.py] add Evans & Kessides (1993) IV to data_year_quarter.bin, save to \\temp'
     
-    print '[competitive_dummy.py] add Evans & Kessides (1993) IV to data_year_quarter.bin, save to \\temp'
     evans_kessides_iv.add_iv(year, quarter)
     
     return None
