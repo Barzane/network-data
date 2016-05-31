@@ -25,7 +25,6 @@ def manual_transfer_reminder():
     print 'manually transfer data_yyyy_q.bin datafiles (output from data-bin) to data\\ before run'
     print
     print '** DISK SPACE REQUIREMENT: ~ 171 MB to store 84 quarterly datafiles (1993_1 to 2013_4) **'
-    print
     
 #    raw_input('press a key to continue')
     

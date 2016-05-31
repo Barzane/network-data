@@ -21,7 +21,7 @@ import other_carrier_centrality
 
 def add_network(year, quarter):
 
-    test_output = True
+    test_output = False
 
     print '\nadd network measures to data_year_quarter.bin, save to \\temp'
 
@@ -249,7 +249,14 @@ def add_network(year, quarter):
     
     other_centrality = other_carrier_centrality.centrality(centrality_dicts)
     
+#    print
+#    print 'betweenness', BC_dict['AA']['DFW'], other_centrality['betweenness']['AA']['DFW']
+#    print 'closeness', CC_dict['AA']['DFW'], other_centrality['closeness']['AA']['DFW']
+#    print 'degree', DC_dict['AA']['DFW'], other_centrality['degree']['AA']['DFW']
+#    print 'eigenvector', EC_dict['AA']['DFW'], other_centrality['eigenvector']['AA']['DFW']
+    
     for i in data:
+        
         origin = i.split('_')[0]
         dest = i.split('_')[1]
         route = origin + '_' + dest
