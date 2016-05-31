@@ -56,15 +56,6 @@ def all_centrality_betweenness(D):
     
     for i in range(len(D)):
         
-        centrality_dictionary[i] = centrality_betweenness(i, D)
-    
-    print 'TEST CODE'
-    print
-    
-    for k in range(20):
-        
-        print k, SP.keys()[k], SP[SP.keys()[k]]
-        
-        sss    
+        centrality_dictionary[i] = centrality_betweenness(i, D)   
     
     return centrality_dictionary
