@@ -23,9 +23,9 @@ def add_iv(year, quarter):
     f = open(src_route_carrier_mktshr, 'rb')
     route_carrier_mktshr = cPickle.load(f)
     f.close()
-    
-#    print '\nTEST CODE'
+        
 #    if year == 2013 and quarter == 3:
+#        print '\nTEST CODE'
 #        print 'FLL_ORD market share', route_carrier_mktshr['FLL_ORD']
         
     evans_kessides_iv = {}    
@@ -44,9 +44,6 @@ def add_iv(year, quarter):
         route_data = sorted(route_x.items(), key = operator.itemgetter(1))
         route_data.reverse()
         
-        print route_data
-        sss
-        
 #        check for non-unique route market share
 #        how to define the IV in this case?
         
@@ -60,6 +57,10 @@ def add_iv(year, quarter):
         if route_mvals != route_mvals2:
             raise NotImplementedError('non-unique route market share')
         
+        if year == 2013 and quarter == 3 and (route == 'FLL_ORD' or route == 'DEN_PHX'):
+            print '\nTEST CODE'
+            print route, route_data
+            
         route_iv = []
                 
         for item_num in range(len(route_data)):
@@ -71,8 +72,13 @@ def add_iv(year, quarter):
         
         evans_kessides_iv[route] = dict(route_iv)
         
-#        print route
-#        print route_carrier_mktshr[route]
+        if year == 2013 and quarter == 3 and route == 'FLL_ORD':
+            print '\nTEST CODE'
+            print evans_kessides_iv[route]
+        
+            raw_input()
+            print evans_kessides_iv
+            sss
     
     for key in data:
         
