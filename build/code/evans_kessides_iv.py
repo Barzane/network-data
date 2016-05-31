@@ -57,9 +57,9 @@ def add_iv(year, quarter):
         if route_mvals != route_mvals2:
             raise NotImplementedError('non-unique route market share')
         
-        if year == 2013 and quarter == 3 and (route == 'FLL_ORD' or route == 'DEN_PHX'):
-            print '\nTEST CODE'
-            print route, route_data
+#        if year == 2013 and quarter == 3 and (route == 'FLL_ORD' or route == 'DEN_PHX'):
+#            print '\nTEST CODE'
+#            print route, route_data
             
         route_iv = []
                 
@@ -72,13 +72,13 @@ def add_iv(year, quarter):
         
         evans_kessides_iv[route] = dict(route_iv)
         
-        if year == 2013 and quarter == 3 and route == 'FLL_ORD':
-            print '\nTEST CODE'
-            print evans_kessides_iv[route]
-        
-            raw_input()
-            print evans_kessides_iv
-            sss
+#        if year == 2013 and quarter == 3 and route == 'FLL_ORD':
+#            print '\nTEST CODE'
+#            print evans_kessides_iv[route]
+#        
+#            raw_input()
+#            print evans_kessides_iv
+#            sss
     
     for key in data:
         

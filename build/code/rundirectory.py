@@ -91,8 +91,6 @@ for (year, quarter) in time_periods:
 #    print '...Evans & Kessides (1993) IV function called by competitive_dummy.py'
     
     competitive_dummy.add_dummies(year, quarter)
-
-    sss
     
     print 'add airport-level marketshare and airport-level hhi, save to \\temp'
     
