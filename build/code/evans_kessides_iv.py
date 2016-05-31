@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 
-import cPickle, numpy, copy, operator
+import cPickle, copy, operator
 
 from scipy.stats.stats import pearsonr
 
 def add_iv(year, quarter):
-        
+    
+    print '...Evans & Kessides (1993) IV function'
+    
     src = '..\\temp\\data_' + str(year) + '_' + str(quarter) + '.bin'
     dst = '..\\temp\\data_' + str(year) + '_' + str(quarter) + '.bin'
     
