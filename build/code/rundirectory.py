@@ -77,13 +77,13 @@ for (year, quarter) in time_periods:
     
     add_network_measures.add_network(year, quarter)
     
-    sss
-    
     low_route_threshold = 10
     
-    print 'remove carriers with low number of routes (threshold = ' + str(low_route_threshold) + '), save to \\temp'
+#    print 'remove carriers with low number of routes (< threshold), save to \\temp'
     
     filter_data.filter_low_routes_by_carrier(year, quarter, low_route_threshold)
+    
+    sss
     
 #    print 'add carrier dummies, save to \\temp'
 #    

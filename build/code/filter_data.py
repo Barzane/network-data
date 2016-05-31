@@ -4,6 +4,8 @@ import cPickle
 
 def filter_low_routes_by_carrier(year, quarter, threshold):
     
+    print '\nremove carriers with low number of routes (threshold = ' + str(threshold) + '), save to \\temp'
+    
     src = '..\\temp\\data_' + str(year) + '_' + str(quarter) + '.bin'
     dst = '..\\temp\\data_' + str(year) + '_' + str(quarter) + '.bin'
 
@@ -29,7 +31,8 @@ def filter_low_routes_by_carrier(year, quarter, threshold):
         if routesByCarrier[item] < threshold:
             routesByCarrierFilter.append(item)
     
-    data2 = {}
+    data2 = {}    
+    output_filter = {}
     
     for key in data:
         
@@ -41,7 +44,19 @@ def filter_low_routes_by_carrier(year, quarter, threshold):
             
         else:
             
-            print '\t'+'removed', carrier
+            if carrier not in output_filter:
+                
+                output_filter[carrier] = 1
+                
+            else:
+                
+                output_filter[carrier] += 1
+                
+    if output_filter != {}:
+        
+        for carrier in output_filter:
+            
+            print 'removed', carrier, '# routes', output_filter[carrier]
     
     data = data2
     
