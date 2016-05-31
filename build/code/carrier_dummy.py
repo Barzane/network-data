@@ -4,6 +4,8 @@ import cPickle
 
 def add_dummies(year, quarter):
 
+    print '\nadd carrier dummies, save to \\temp'
+
     src = '..\\temp\\data_' + str(year) + '_' + str(quarter) + '.bin'
     dst = '..\\temp\\data_' + str(year) + '_' + str(quarter) + '.bin'
     

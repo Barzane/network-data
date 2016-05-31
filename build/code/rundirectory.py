@@ -83,11 +83,11 @@ for (year, quarter) in time_periods:
     
     filter_data.filter_low_routes_by_carrier(year, quarter, low_route_threshold)
     
-    sss
-    
 #    print 'add carrier dummies, save to \\temp'
-#    
-#    carrier_dummy.add_dummies(year, quarter)
+    
+    carrier_dummy.add_dummies(year, quarter)
+
+    sss
     
     print 'add Dai et al (2014) monopoly, duopoly, competitive dummies, save to \\temp'
     print '...Evans & Kessides (1993) IV function called by competitive_dummy.py'
