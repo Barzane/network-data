@@ -4,6 +4,8 @@ import cPickle, copy
 
 def add_variables(year, quarter):
 
+    print '\nadd airport-level marketshare and airport-level hhi, save to \\temp'
+
     src = '..\\temp\\data_' + str(year) + '_' + str(quarter) + '.bin'
     dst = '..\\temp\\data_' + str(year) + '_' + str(quarter) + '.bin'
     
@@ -73,6 +75,9 @@ def add_variables(year, quarter):
             
         if airp not in airp_hhi:
             airp_hhi[airp] = sum_hhi
+    
+    print airp_hhi
+    sss    
     
     for key in data:
         

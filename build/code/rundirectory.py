@@ -92,9 +92,11 @@ for (year, quarter) in time_periods:
     
     competitive_dummy.add_dummies(year, quarter)
     
-    print 'add airport-level marketshare and airport-level hhi, save to \\temp'
+#    print 'add airport-level marketshare and airport-level hhi, save to \\temp'
     
     airport_mktshr_hhi.add_variables(year, quarter)
+    
+    sss
     
     print 'convert bin to txt, save txt to \output'
     
