@@ -74,10 +74,7 @@ def add_variables(year, quarter):
             sss
             
         if airp not in airp_hhi:
-            airp_hhi[airp] = sum_hhi
-    
-    print airp_hhi
-    sss    
+            airp_hhi[airp] = sum_hhi    
     
     for key in data:
         
