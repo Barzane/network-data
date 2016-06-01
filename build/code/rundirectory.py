@@ -107,15 +107,15 @@ for (year, quarter) in time_periods:
     
     shutil.move(src, dst)
 
-sss
-
 #print 'merge .bin output files'
-#
-#merge_bin.wrapper(time_periods)    
-#
+
+merge_bin.wrapper(time_periods)    
+
 #print 'convert .bin to .txt'
-#
-#convert_bin_to_text.convert()
+
+convert_bin_to_text.convert()
+
+sss
 
 print 'analyzing full-sample data .bin'
 

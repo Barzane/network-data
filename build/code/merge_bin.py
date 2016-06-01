@@ -4,7 +4,9 @@ import cPickle
 
 def merge(src_data, full_data):
     
-    print '[loading]', src_data
+    print 'merge .bin output files'    
+    
+    print 'loading', src_data
         
     f = open(src_data, 'r')
     data = cPickle.load(f)
@@ -36,7 +38,7 @@ def wrapper(time_periods):
     
     dst_full_data = '..\\output\\data_full_with_network.bin'
     
-    print '[saving]', dst_full_data    
+    print 'saving', dst_full_data    
     
     f = open(dst_full_data, 'wb')
     cPickle.dump(full_data, f)

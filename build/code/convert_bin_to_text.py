@@ -4,6 +4,8 @@ import cPickle, copy
 
 def convert():
     
+    print '\nconvert .bin to .txt'
+    
     src_data = '..\\output\\data_full_with_network.bin'
     
 #    data .bin loaded from \output, not moved to \temp first
