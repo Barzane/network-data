@@ -96,18 +96,18 @@ for (year, quarter) in time_periods:
     
     airport_mktshr_hhi.add_variables(year, quarter)
     
-    sss
-    
-    print 'convert bin to txt, save txt to \output'
+#    print 'convert bin to txt, save txt to \output'
     
     bin_to_txt.convert_to_txt(year, quarter)
     
-    print 'move bin from \\temp to \output'
+    print 'move bin from \\temp to \output\n'
     
     src = '..\\temp\\data_' + str(year) + '_' + str(quarter) + '.bin'
     dst = '..\\output\\data_' + str(year) + '_' + str(quarter) + '.bin'
     
     shutil.move(src, dst)
+
+sss
 
 #print 'merge .bin output files'
 #

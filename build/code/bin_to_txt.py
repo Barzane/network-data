@@ -4,6 +4,8 @@ import cPickle
 
 def convert_to_txt(year, quarter):
     
+    print '\nconvert bin to txt, save txt to \output'
+    
     src = '..\\temp\\data_' + str(year) + '_' + str(quarter) + '.bin'
     
     f = open(src, 'rb')
