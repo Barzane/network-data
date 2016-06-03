@@ -38,7 +38,7 @@ def wrapper(time_periods):
     
     dst_full_data = '..\\output\\data_full_with_network.bin'
     
-    print 'saving', dst_full_data    
+    print '\nsaving', dst_full_data    
     
     f = open(dst_full_data, 'wb')
     cPickle.dump(full_data, f)
