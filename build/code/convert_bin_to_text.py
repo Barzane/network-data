@@ -67,7 +67,16 @@ def convert():
 
     output_string += header_line
 
-    for key in data_dict.keys():
+    length_of_data = len(data_dict)
+    step_length = length_of_data // 100
+
+    count = 0
+    
+    for key in data_dict:
+        
+        if count % step_length == 0:
+            
+            print count // step_length, '%'
         
         data_line = key.split('_') + data_dict[key]
         
@@ -79,9 +88,11 @@ def convert():
         output_string = output_string.rstrip()
         output_string += '\n'
         
+        count += 1        
+        
     output_string = output_string.rstrip()
 
-    print 'saving', dst_txt
+    print '\nsaving', dst_txt
 
     f = open(dst_txt, 'w')
     f.write(output_string)
