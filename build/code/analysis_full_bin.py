@@ -17,14 +17,17 @@ def analysis():
     analysis = dict()
     x_axis = range(1, 61)
     
-#    carrier_choice = 'WN'
-#    carrier_name = 'Southwest Airlines'
+    carrier_choice = 'WN'
+    carrier_name = 'Southwest Airlines'
     
-    carrier_choice = 'F9'
-    carrier_name = 'Frontier Airlines'
+#    carrier_choice = 'F9'
+#    carrier_name = 'Frontier Airlines'
     
-    airport_choice = 'DEN'
-    airport_name = 'Denver International'
+#    airport_choice = 'DEN'
+#    airport_name = 'Denver International'
+    
+    airport_choice = 'MDW'
+    airport_name = 'Midway International'
     
     name_list = [name + '_' + carrier_choice for name in ['density', 'edges', 'nodes', 'diameter']]
     centrality_list = [name + '_' + carrier_choice for name in ['origindegree', 'origincloseness', 'originbetweenness', 'origineigenvector']]
