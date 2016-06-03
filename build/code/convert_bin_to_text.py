@@ -35,11 +35,22 @@ def convert():
         
         for var in var_list:
             
-            data_dict[key].append(data_hold[key][var])
+            try:            
+            
+                data_dict[key].append(data_hold[key][var])
+                
+            except KeyError:
+                
+                if var in ['B6', 'CO', 'HP', 'NW', 'SY', 'TZ', 'YX']:
+                    
+                    data_dict[key].append(0)
+                    
+                else:
+
+                    print 'missing key', var, '(recorded as NA)'                    
+                    data_dict[key].append('NA')
     
     output_string = ''
-
-    first_key = data_dict.keys()[0].split('_')
     
     dst_txt = '..\\output\\'+'data_full_with_network.txt'
 

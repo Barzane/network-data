@@ -44,6 +44,9 @@ def clear_output_temp_input():
     
     return None
 
+convert_bin_to_text.convert()
+sss
+
 horizontal()
    
 manual_transfer_reminder()
