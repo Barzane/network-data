@@ -52,7 +52,7 @@ horizontal()
 clear_output_temp_input()
 horizontal()
 
-full_sample = False
+full_sample = True
 
 if full_sample:
     
@@ -115,13 +115,11 @@ merge_bin.wrapper(time_periods)
 
 convert_bin_to_text.convert()
 
-sss
-
-print 'analyzing full-sample data .bin'
+#print 'analyzing full-sample data .bin'
 
 analysis_full_bin.analysis()
 
-print 'move pyc files (byte code) from \code to \\temp'
+print '\nmove pyc files (byte code) from \code to \\temp'
 
 src = '.\\'
 dst = '..\\temp\\'

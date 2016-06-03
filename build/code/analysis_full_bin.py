@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 
 import cPickle, numpy, math
+
 import matplotlib.pyplot as plt
 
 def analysis():
+    
+    print '\nanalyzing full-sample data .bin'
     
     src = '..\\output\\data_full_with_network.bin'
     
