@@ -21,7 +21,7 @@ eigenvector_map = dictionary, with key = node number, value = eigenvector centra
 		return eigenvector_map"""
     
     n = len(g)
-    w, U = scipy.linalg.eig(g)
+    w, U = numpy.linalg.eig(g)
     numpy.testing.assert_almost_equal(w * U, g.dot(U))
     max_eigenvalue_index = int(numpy.argmax(w))
     eigenvector_c = (U.T)[max_eigenvalue_index]
