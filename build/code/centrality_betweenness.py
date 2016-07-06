@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 import shortest_paths
+import invert_dict
+import itertools
 
 def centrality_betweenness(i, D):
     """CENTRALITY-BETWEENNESS(i, D)
@@ -42,7 +44,7 @@ def centrality_betweenness(i, D):
     
     return (ratio_sum / ((n - 1) * (n - 2) / 2.))
     
-def all_centrality_betweenness(D):
+def all_centrality_betweenness(D, N=None):
     """ALL-CENTRALITY-BETWEENNESS(D)
 		centrality_dictionary = {} // an empty dictionary
 		for i = 0 to D.size - 1
@@ -57,5 +59,31 @@ def all_centrality_betweenness(D):
     for i in range(len(D)):
         
         centrality_dictionary[i] = centrality_betweenness(i, D)   
+
+    if N is not None:
+           
+        for i in SP:
+            
+            if len(SP[i]) != 1:
+                
+                print SP[i],
+     
+                Ninv = invert_dict.invert_dict(N)
+                
+    #            http://stackoverflow.com/questions/11264684/flatten-list-of-lists
+                
+                airports = list(itertools.chain.from_iterable(SP[i]))
+                airports = list(set(airports))
+                airports.sort()
+                
+                for j in airports:
+                    
+                    print j, Ninv[j],
+    
+                print 
+                
+    #            raw_input()
+        
+        print
     
     return centrality_dictionary
