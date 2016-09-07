@@ -31,12 +31,18 @@ eigenvector_map = dictionary, with key = node number, value = eigenvector centra
         eigenvector_c = (- eigenvector_c)
         
     eigenvector_c = numpy.real(eigenvector_c)
+    
+#    eigenvector_c normalized to length 1
+#    subsequently scaled by sqrt(2), the maximum possible value for any n
+    
+    eigenvector_c = numpy.sqrt(2) * eigenvector_c   
+    
     eigenvector_map = dict(zip(range(n), eigenvector_c))
     
-    sumsquare = 0
-    
-    for element in eigenvector_c:
-        
-        sumsquare = sumsquare + element**2
+#    sumsquare = 0
+#    
+#    for element in eigenvector_c:
+#        
+#        sumsquare = sumsquare + element**2
     
     return eigenvector_map
