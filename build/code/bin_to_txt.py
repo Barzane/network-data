@@ -17,9 +17,9 @@ def convert_to_txt(year, quarter):
         outputString = ''
         
         firstKey = dataDict.keys()[0].split('_')
-        filenameOut = 'data_'+firstKey[-2]+'_'+firstKey[-1]+'.txt'
+        filenameOut = 'data_' + firstKey[-2] + '_' + firstKey[-1] + '.txt'
         
-        headerLine = 'origin'+'\t'+'dest'+'\t'+'carrier'+'\t'+'year'+'\t'+'quarter'+'\t'
+        headerLine = 'origin' + '\t' + 'dest' + '\t' + 'carrier' + '\t' + 'year' + '\t' + 'quarter' + '\t'
         
         def keytest(data, cle):
         
