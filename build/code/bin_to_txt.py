@@ -48,8 +48,14 @@ def convert_to_txt(year, quarter):
             dataLine = key.split('_')
                 
             for j in varList:
+                
+                try:
                     
-                dataLine += [dataDict[key][j]]
+                    dataLine += [dataDict[key][j]]
+                    
+                except KeyError:
+                    
+                    dataLine += ['NA']
                 
             for item in dataLine:
                 outputString += str(item)
