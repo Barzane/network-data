@@ -30,6 +30,7 @@ def convert_to_txt(year, quarter):
         varList = keytest(dataDict, dataDict.keys()[0])
         
         for i in varList:
+            
             headerLine += str(i)
             headerLine += '\t'
             
@@ -45,8 +46,9 @@ def convert_to_txt(year, quarter):
             nb += 1
             
             dataLine = key.split('_')
-            
+                
             for j in varList:
+                    
                 dataLine += [dataDict[key][j]]
                 
             for item in dataLine:
