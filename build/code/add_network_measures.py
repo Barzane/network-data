@@ -21,7 +21,7 @@ import other_carrier_centrality
 
 def add_network(year, quarter):
 
-    test_output = False
+    test_output = True
 
     print '\nadd network measures to data_year_quarter.bin, save to \\temp'
 
@@ -57,7 +57,8 @@ def add_network(year, quarter):
     
     for carrier in all_airlines:
         
-        test_condition = (carrier == 'AA' and year == 2013 and quarter == 3)         
+#        test_condition = (carrier == 'AA' and year == 2013 and quarter == 3)         
+        test_condition = True
         
         print '\t' + carrier + ' (' + str(count + 1) + ' of ' + str(len(all_airlines)) + ')'
         
@@ -149,21 +150,21 @@ def add_network(year, quarter):
             print '\nTEST OUTPUT'
             print 'carrier', carrier, 'year', year, 'quarter', quarter            
             print
-            print 'Nbar', Nbar
-            print 'gbar[2]', gbar[2] # Austin-Bergstrom International Airport            
+#            print 'Nbar', Nbar
+#            print 'gbar[2]', gbar[2] # Austin-Bergstrom International Airport            
             print 'number_nodes', number_nodes
             print 'number_edges', number_edges
-            print 'inv_d_star', inv_d_star
+#            print 'inv_d_star', inv_d_star
             number_nodes_star = len(gstar)
             number_edges_star = sum(sum(gstar)) / 2
-            print 'number_nodes_star', number_nodes_star
-            print 'number_edges_star', number_edges_star
+#            print 'number_nodes_star', number_nodes_star
+#            print 'number_edges_star', number_edges_star
             print 'diameter_g', diameter_g
-            print 'distance matrix D', D
+#            print 'distance matrix D', D
             print 'average_path_length', average_path_length
             print 'density', density
-            print 'degree distribution Pd', Pd
-            print 'degree centrality DC', DC
+#            print 'degree distribution Pd', Pd
+#            print 'degree centrality DC', DC
             
             max_DC = 0
             max_DC_i = None
@@ -175,9 +176,9 @@ def add_network(year, quarter):
                     max_DC = DC[i]
                     max_DC_i = i
                     
-            print 'maximum degree centrality', max_DC, 'index', max_DC_i, 'node', inv_d[max_DC_i]
+#            print 'maximum degree centrality', max_DC, 'index', max_DC_i, 'node', inv_d[max_DC_i]
             
-            print 'closeness centrality CC', CC
+#            print 'closeness centrality CC', CC
             
             max_CC = 0
             max_CC_i = None
@@ -189,9 +190,9 @@ def add_network(year, quarter):
                     max_CC = CC[i]
                     max_CC_i = i
                     
-            print 'maximum closeness centrality', max_CC, 'index', max_CC_i, 'node', inv_d[max_CC_i]
+#            print 'maximum closeness centrality', max_CC, 'index', max_CC_i, 'node', inv_d[max_CC_i]
 
-            print 'eigenvector_map', eigenvector_map
+#            print 'eigenvector_map', eigenvector_map
             
             max_EC = 0
             max_EC_i = None
@@ -203,7 +204,7 @@ def add_network(year, quarter):
                     max_EC = eigenvector_map[i]
                     max_EC_i = i
                     
-            print 'maximum eigenvector centrality', max_EC, 'index', max_EC_i, 'node', inv_d[max_EC_i]
+#            print 'maximum eigenvector centrality', max_EC, 'index', max_EC_i, 'node', inv_d[max_EC_i]
 
             max_BC = 0
             max_BC_i = None
@@ -215,9 +216,9 @@ def add_network(year, quarter):
                     max_BC = BC[i]
                     max_BC_i = i
                     
-            print 'maximum betweenness centrality', max_BC, 'index', max_BC_i, 'node', inv_d[max_BC_i]
+#            print 'maximum betweenness centrality', max_BC, 'index', max_BC_i, 'node', inv_d[max_BC_i]
            
-            sss
+#            raw_input()
             
         for key in DC:
             DC_dict[carrier][inv_d[key]] = DC[key]

@@ -52,7 +52,7 @@ horizontal()
 clear_output_temp_input()
 horizontal()
 
-full_sample = True
+full_sample = False
 
 if full_sample:
     
