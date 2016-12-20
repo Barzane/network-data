@@ -16,8 +16,8 @@ import centrality_eigenvector
 import density_degree_distribution
 import route_level_g
 import connected
-
 import other_carrier_centrality
+import clustering_A
 
 def add_network(year, quarter):
 
@@ -164,6 +164,9 @@ def add_network(year, quarter):
             print 'density', density
 #            print 'degree distribution Pd', Pd
 #            print 'degree centrality DC', DC
+                        
+            print 'overall clustering', clustering_A.cl(gbar)
+            sss
             
             max_DC = 0
             max_DC_i = None
