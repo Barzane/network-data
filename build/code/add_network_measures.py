@@ -175,7 +175,9 @@ def add_network(year, quarter):
 #            X = numpy.ma.masked_equal(gbar_upper_triangle, 0)
 #            gbar_upper_triangle_no_zeros = X.compressed()
             
-            print 'mean degree', numpy.mean(numpy.sum(gbar ,axis=1))
+            degree_by_node = numpy.sum(gbar ,axis=1)
+            print 'mean degree', numpy.mean(degree_by_node)
+            print 'median degree', numpy.median(degree_by_node)
             
             max_DC = 0
             max_DC_i = None
