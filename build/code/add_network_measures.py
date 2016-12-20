@@ -143,8 +143,7 @@ def add_network(year, quarter):
 #        if len(Nstar) > 1 and not numpy.isinf(average_path_length_star):
 #            
 #            BCroute = centrality_betweenness.all_centrality_betweenness(Dstar)
-    
-    
+        
         if test_output and test_condition:
 
             print '\nTEST OUTPUT'
