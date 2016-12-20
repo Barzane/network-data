@@ -58,7 +58,7 @@ def add_network(year, quarter):
     for carrier in all_airlines:
         
 #        test_condition = (carrier == 'AA' and year == 2013 and quarter == 3)         
-        test_condition = False
+        test_condition = True
         
         print '\t' + carrier + ' (' + str(count + 1) + ' of ' + str(len(all_airlines)) + ')'
         
