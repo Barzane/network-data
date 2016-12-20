@@ -59,7 +59,7 @@ def add_network(year, quarter):
     for carrier in all_airlines:
         
 #        test_condition = (carrier == 'AA' and year == 2013 and quarter == 3)         
-        test_condition = False
+        test_condition = True
         
         print '\t' + carrier + ' (' + str(count + 1) + ' of ' + str(len(all_airlines)) + ')'
         
@@ -168,6 +168,14 @@ def add_network(year, quarter):
                         
             print 'overall clustering', clustering_A.cl(gbar)
             print 'average clustering', clustering_average.cl_avg(gbar)
+            
+##            http://stackoverflow.com/questions/5927180/removing-data-from-a-numpy-array
+#            iu = numpy.triu_indices(len(gbar), 1)
+#            gbar_upper_triangle = gbar[iu]
+#            X = numpy.ma.masked_equal(gbar_upper_triangle, 0)
+#            gbar_upper_triangle_no_zeros = X.compressed()
+            
+            print 'mean degree', numpy.mean(numpy.sum(gbar ,axis=1))
             
             max_DC = 0
             max_DC_i = None
