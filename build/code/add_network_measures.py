@@ -19,6 +19,7 @@ import connected
 import other_carrier_centrality
 import clustering_A
 import clustering_average
+import degree_correlation
 
 def add_network(year, quarter):
 
@@ -178,6 +179,8 @@ def add_network(year, quarter):
             degree_by_node = numpy.sum(gbar ,axis=1)
             print 'mean degree', numpy.mean(degree_by_node)
             print 'median degree', numpy.median(degree_by_node)
+            print 'degree correlation', degree_correlation.calculate(gbar)
+            print
             
             max_DC = 0
             max_DC_i = None
