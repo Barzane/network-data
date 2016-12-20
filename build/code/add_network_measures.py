@@ -18,6 +18,7 @@ import route_level_g
 import connected
 import other_carrier_centrality
 import clustering_A
+import clustering_average
 
 def add_network(year, quarter):
 
@@ -58,7 +59,7 @@ def add_network(year, quarter):
     for carrier in all_airlines:
         
 #        test_condition = (carrier == 'AA' and year == 2013 and quarter == 3)         
-        test_condition = True
+        test_condition = False
         
         print '\t' + carrier + ' (' + str(count + 1) + ' of ' + str(len(all_airlines)) + ')'
         
@@ -166,7 +167,7 @@ def add_network(year, quarter):
 #            print 'degree centrality DC', DC
                         
             print 'overall clustering', clustering_A.cl(gbar)
-            sss
+            print 'average clustering', clustering_average.cl_avg(gbar)
             
             max_DC = 0
             max_DC_i = None
