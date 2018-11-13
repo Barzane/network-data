@@ -2,7 +2,7 @@
 
 import numpy
 
-def distance_matrix(g) :
+def distance_matrix(g):
     """FUNCTION	determine connectedness of (N, g) and compute its diameter
         INPUT	network tuple (N, g)
 		SET	n x n adjacency matrix g <g = network[1]>
@@ -70,7 +70,9 @@ have corresponding nonzero elements in G, and that have not previously been upda
     G1 = numpy.zeros((n, n), dtype=numpy.int)
     G2 = g
     D = numpy.zeros((n, n))
+    
     flag = True 
+
     j = 1 
     J = numpy.ones((n, n))
     
@@ -86,9 +88,12 @@ have corresponding nonzero elements in G, and that have not previously been upda
         D += B * (j * J)
         matrixsum = G1 + G2
         
-        if (matrixsum[numpy.triu_indices(n,1)]==0).any()==False:
+        if (matrixsum[numpy.triu_indices(n,1)]==0).any() == False:
+            
             flag = False
-        else : 
+
+        else:
+            
             G1 += D
             G1 = G1 + G2 
             G2 = G2.dot(g)
