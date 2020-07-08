@@ -94,7 +94,8 @@ have corresponding nonzero elements in G, and that have not previously been upda
 
         else:
             
-            G1 += D
+#            G1 += D
+            G1 = G1 + D
             G1 = G1 + G2 
             G2 = G2.dot(g)
             

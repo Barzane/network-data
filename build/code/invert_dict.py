@@ -11,4 +11,4 @@ def invert_dict(d):
         raise RuntimeError('repeated values in original dictionary, cannot invert')
     
     return inv_d
-      
+    
