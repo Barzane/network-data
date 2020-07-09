@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-import shortest_paths
-import invert_dict
 import itertools
+
+import invert_dict, shortest_paths
 
 def centrality_betweenness(i, D):
     """CENTRALITY-BETWEENNESS(i, D)

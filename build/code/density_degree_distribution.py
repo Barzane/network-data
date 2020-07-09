@@ -45,7 +45,7 @@ def density_degree_distribution(network):
         
         raise ZeroDivisionError('n > 1 required')
         
-    all_degrees = numpy.sum(g ,axis=1)
+    all_degrees = numpy.sum(g, axis=1)
     density = float(numpy.sum(g)) / (n * (n-1))
     y = numpy.bincount(all_degrees)
     ii = numpy.nonzero(y)[0]

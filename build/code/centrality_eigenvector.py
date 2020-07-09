@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import numpy, scipy
+import numpy
 
 def centrality_eigenvector(g) : 
     """CENTRALITY-EIGENVECTOR(g)
